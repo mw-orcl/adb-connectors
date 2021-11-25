@@ -1,4 +1,4 @@
-# **Connecting Microsoft Power BI Desktop to Oracle Autonomous Database**
+## **Connecting Microsoft Power BI Desktop to Oracle Autonomous Database**
 
 
 
@@ -195,14 +195,16 @@ If you get connection issues or an error such as "Object reference not set to an
 Check that you have added the environment variables properly.
 
 C:\WINDOWS\system32>echo %PATH%
+
 **C:\odp64**;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\...
 
 C:\WINDOWS\system32>echo %TNS_ADMIN%
+
 C:\Wallet\Wallet files...
 
 Note: A restart of the Windows OS may be needed for the environment variables to take effect.
 
-Check your sqlnet.ora is set to the directory of your wallet or you are using the parameter MY_WALLET_DIRECTORY in tnsnames.ora
+Check your sqlnet.ora is set to the directory of your wallet or you are setting the directory using the parameter MY_WALLET_DIRECTORY in tnsnames.ora
 
 ## **Performance Tuning for Large Data Retrievals**
 
