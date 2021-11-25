@@ -40,7 +40,7 @@ Power BI may use managed ODP.NET or unmanaged ODP.NET for its ADB connectivity. 
 
 ![pbi-db-oracle](./images/get-data-oracle.png)
 
-4. If the error indicates it is trying to use **Oracle.DataAccess.dll** assembly, then set up Power BI Desktop with **unmanaged ODP.NET**. If the error says it is trying to use **Oracle.ManagedDataAccess.dll**, then use **managed ODP.NET**.
+4. If the error indicates it is trying to use **Oracle.DataAccess.Client** assembly, then set up Power BI Desktop with **unmanaged ODP.NET**. If the error says it is trying to use **Oracle.ManagedDataAccess.Client**, then use **managed ODP.NET**.
 
  
 
@@ -52,7 +52,7 @@ In the above screenshot, we see that 64-bit Power BI Desktop is being used. That
 
 The following instructions cover all scenarios, whether you are using managed or unmanaged ODP.NET or you are using 32-bit or 64-bit Power BI. 
 
-5. If you require managed ODP.NET or 64-bit unmanaged ODP.NET, download 64-bit ODAC 19.3 from the     ODAC Xcopy section in the middle of this [Oracle web page](https://www.oracle.com/database/technologies/dotnet-odacdeploy-downloads.html). If you require 32-bit unmanaged ODP.NET, download 32-bit ODAC 19c from the ODAC Xcopy section.
+5. If you require 64-bit managed ODP.NET or unmanaged ODP.NET, download 64-bit ODAC 19.3 from the     ODAC Xcopy section in the middle of this [Oracle web page](https://www.oracle.com/database/technologies/dotnet-odacdeploy-downloads.html). If you require 32-bit unmanaged ODP.NET, download 32-bit ODAC 19c.
 
 ![odac-xcopy](./images/odac-xcopy-download.png)
 
@@ -78,7 +78,7 @@ Note: Enter the installation location (e.g. c:\odp64 or c:\odp32) for the direct
 
 
 
-8. Configuration instructions differ between managed ODP.NET and unmanaged ODP.NET. In the same command prompt **with administrator mode,** navigate to the installation subdirectory, <installation directory>\odp.net\bin\4. Then, execute the following commands:
+8. Configuration instructions differ between managed ODP.NET and unmanaged ODP.NET. In the same command prompt **in administrator mode,** navigate to the installation subdirectory, <installation directory>\odp.net\bin\4. Then, execute the following commands:
 
 a.    To configure unmanaged ODP.NET:
 
@@ -124,15 +124,17 @@ To ensure this directory path setting has precedence over existing Oracle Homes,
 
 
 
-11. In the Windows environment variables dialog, create the TNS_ADMIN variable. Set its value to the directory location where you unzipped the ADB wallet contents. 
+11. In the Windows user environment variables dialog, create the TNS_ADMIN variable. Set its value to the directory location where you unzipped the ADB wallet contents. 
 
 ![tns_admin](./images/tns-admin-variable.png)
 
 
 
-Note: The tnsnames.ora net service names will be used to connect to ADB.
+The tnsnames.ora net service names will be used to connect to ADB.
 
-If you are connecting to multiple ADBs from the same Power BI client machine with a different wallet for each one, add the parameter MY_WALLET_DIRECTORY to the connect descriptor with each descriptor’s specific wallet location. For example:
+If you are connecting to multiple ADBs from the same Power BI client machine with a different wallet for each one, add the parameter MY_WALLET_DIRECTORY to the connect descriptor with each descriptor’s specific wallet location.  Note: Setting this parameter will take precedence over the sqlnet.ora wallet location also.  
+
+For example:
 
 *adwptr_high = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.us-phoenix-1.oraclecloud.com))(connect_data=(service_name=bk8ui2h_adwptr_high.adwc.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adwc.uscom-east-1.oraclecloud.com, OU=Oracle BMCS US, O=Oracle Corporation, L=Redwood City, ST=California, C=US")(**MY_WALLET_DIRECTORY=C:\DATA\WALLET\Wallet_ADWPTR**)))*
 
@@ -156,7 +158,7 @@ If you are connecting to multiple ADBs from the same Power BI client machine wit
 
 ![select_service](./images/power-bi-connect-ui.png)
 
-15. Then select Database and enter your username and password for ADW, and Connect
+15. Then select Database and enter your username and password for ADB, and Connect
 
 ![select_database](./images/select-database.png)
 
@@ -172,7 +174,7 @@ If you are connecting to multiple ADBs from the same Power BI client machine wit
 
 
 
-17. Create your own graph or retrieve the data in theTable
+17. Create your own graph or retrieve the data in the table
 
 ![pbi_graph](./images/power-bi-graph.png)
 
@@ -185,6 +187,22 @@ If you are connecting to multiple ADBs from the same Power BI client machine wit
 ![pbi_table_2](./images/power-bi-table-2.png)
 
 
+
+## **Troubleshooting**
+
+If you get connection issues or an error such as "Object reference not set to an instance of an object."
+
+Check that you have added the environment variables properly.
+
+C:\WINDOWS\system32>echo %PATH%
+**C:\odp64**;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\...
+
+C:\WINDOWS\system32>echo %TNS_ADMIN%
+C:\Wallet\Wallet files...
+
+Note: A restart of the Windows OS may be needed for the environment variables to take effect.
+
+Check your sqlnet.ora is set to the directory of your wallet or you are using the parameter MY_WALLET_DIRECTORY in tnsnames.ora
 
 ## **Performance Tuning for Large Data Retrievals**
 
@@ -202,7 +220,7 @@ Restart Power BI Desktop and run your queries with the new setting.
 
 To increase managed ODP.NET’s FetchSize, modify the .NET machine.config file. Modifying the machine.config requires Windows Administrator privileges. This file is generally located in the following directory: **C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319\Config**.
 
- Add an <oracle.manageddataaccess.client> section in the machine.config file for managed ODP.NET. This section should be placed within the <configuration> section and after the <configSections> </configSections>. Here’s an example setting the FetchSize to 4 MB:
+ Add an oracle.manageddataaccess.client section in the machine.config file for managed ODP.NET. This section should be placed within the <configuration> section and after the <configSections> </configSections>. Here’s an example setting the FetchSize to 4 MB:
 
  <configuration>
 
@@ -212,19 +230,19 @@ To increase managed ODP.NET’s FetchSize, modify the .NET machine.config file. 
 
   </configSections>
 
- **<oracle.manageddataaccess.client>**
+ **oracle.manageddataaccess.client**
 
   **<version number="\*">**
 
    **<settings>**
 
-​    **<setting name="FetchSize" value="4194304" />**
+​    setting name="FetchSize" value="4194304"
 
    **</settings>**
 
   **</version>**
 
- **</oracle.manageddataaccess.client>**
+ **/oracle.manageddataaccess.client**
 
  </configuration>
 
@@ -234,11 +252,11 @@ Once done, restart Power BI Desktop so that ODP.NET will use the new setting.
 
 
 
-End of guide.
 
 
 
-## Acknowledgements
+
+## **Acknowledgements**
 * **Author** - Pedro Torres, Alex, Keh, Database Product Management
 * **Contributor** - Vijay Balebail, Milton Wan, Database Product Management
 * **Last Updated By/Date** - Milton Wan, December 2021
