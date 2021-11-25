@@ -240,5 +240,5 @@ End of guide.
 
 ## Acknowledgements
 * **Author** - Pedro Torres, Alex, Keh, Database Product Management
-* **Contributor** - Milton Wan, Database Product Management
+* **Contributor** - Vijay Balebail, Milton Wan, Database Product Management
 * **Last Updated By/Date** - Milton Wan, December 2021
