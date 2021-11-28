@@ -3,8 +3,13 @@
   "help": "vijay.balebail@oracle.com",
   "tutorials": [
     {
-      "title": "Connection Guide",
-      "description": "Introduction",
+      "title": "Autonomous Database Wallet",
+      "description": "Wallet",
+      "filename": "../../common/wallet/wallet.md"
+    },
+    {
+      "title": "Power BI Connection Guide",
+      "description": "Guide",
       "filename": "../../power-bi-desktop/power-bi-connector-guide.md"
     }
   ]

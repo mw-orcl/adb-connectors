@@ -1,0 +1,21 @@
+{
+  "workshoptitle": "Connecting dataiku to Oracle Autonomous Database",
+  "help": "vijay.balebail@oracle.com",
+  "tutorials": [
+    {
+      "title": "Autonomous Database Wallet",
+      "description": "Introduction",
+      "filename": "../../common/wallet/wallet.md"
+    },
+    {
+      "title": "JDBC Configuration",
+      "description": "Configuration",
+      "filename": "../../common/jdbc/jdbc-thin-wallet.md"
+    },
+    {
+      "title": "dataiku Connection Guide",
+      "description": "Introduction",
+      "filename": "../../dataiku-connector-guide.md"
+    }
+  ]
+}
