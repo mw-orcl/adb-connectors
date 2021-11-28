@@ -146,21 +146,27 @@ To ensure this directory path setting has precedence over existing Oracle Homes,
 
 ## **Troubleshooting**
 
-If you get connection issues or an error such as "Object reference not set to an instance of an object."
+Error: "Object reference not set to an instance of an object"
 
-Check that you have added the environment variables properly.
+Check that you have added the environment variables properly.  ie: C:\odp64 or odp32
 
 ```
 C:\WINDOWS\system32>echo %PATH%
 
-**C:\odp64**;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\...
+C:\odp64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\...
+```
 
+Error: "Oracle: ORA-12154: TNS:could not resolve the connect identifier specified"
+
+Check that you have added the user environment variables properly.  ie: TNS_ADMIN and path to wallet directory
+
+```
 C:\WINDOWS\system32>echo %TNS_ADMIN%
 
 C:\Wallet\Wallet files...
 ```
 
-Note: A restart of the Windows OS may be needed for the environment variables to take effect.
+Note: A restart of the Windows OS or the Power BI application may be needed for the environment variables to take effect.
 
 Check your sqlnet.ora is set to the directory of your wallet or you are setting the directory using the parameter `MY_WALLET_DIRECTORY` in tnsnames.ora
 
@@ -217,6 +223,6 @@ Once done, restart Power BI Desktop so that ODP.NET will use the new setting.
 
 
 ## **Acknowledgements**
-* **Author** - Pedro Torres, Alex, Keh, Database Product Management
-* **Contributor** - Vijay Balebail, Milton Wan, Database Product Management
+* **Author(s)** - Pedro Torres, Alex, Keh, Database Product Management
+* **Contributor(s)** - Vijay Balebail, Milton Wan, Database Product Management
 * **Last Updated By/Date** - Milton Wan, December 2021

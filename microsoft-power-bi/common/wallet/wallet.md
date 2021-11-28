@@ -56,7 +56,14 @@ Check your TNS_ADMIN variable.
 
 `C:\Wallet\Wallet files...`
 
-Note: A restart of the Windows OS may be needed for the environment variables to take effect.
+Note: A restart of the Windows OS or your BI/ETL application may be needed for the environment variables to take effect.
 
-Check your sqlnet.ora is set to the directory of your wallet or you are setting the directory using the parameter `MY_WALLET_DIRECTORY` in tnsnames.ora
+Check your sqlnet.ora is set to the directory of your wallet or you are setting the directory using the parameter `MY_WALLET_DIRECTORY` in tnsnames.ora as explained above.
+
+sqlnet.ora example:
+
+```
+WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY="C:\Oracle\Wallets\Wallet_ADBPH")))
+SSL_SERVER_DN_MATCH=yes
+```
 
