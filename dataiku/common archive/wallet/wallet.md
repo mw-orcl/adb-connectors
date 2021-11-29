@@ -1,4 +1,4 @@
-## **Connecting with Wallet**
+## **Download the Wallet**
 
 After provisioning Oracle Autonomous Database (ADB), a wallet containing client credentials is required to connect to ADB. 
 
@@ -66,4 +66,6 @@ sqlnet.ora example:
 WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY="C:\Oracle\Wallets\Wallet_ADBPH")))
 SSL_SERVER_DN_MATCH=yes
 ```
+
+
 
