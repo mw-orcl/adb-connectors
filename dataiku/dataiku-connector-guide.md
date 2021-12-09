@@ -11,6 +11,8 @@ These instructions use JDBC Thin driver from Oracle.
 - Oracle JDBC Thin driver is downloaded and configured.  Specific instructions on installing the jar file to dataiku are [here](https://doc.dataiku.com/dss/latest/connecting/sql/oracle.html#installing-the-jdbc-driver).
 - ADB Wallet is downloaded on your machine running dataiku.
 
+## **Configure the Connection**
+
 Below is the screen shot of the dataiku UI for connecting to Oracle database.
 
 ![adb](./images/dataiku.png)

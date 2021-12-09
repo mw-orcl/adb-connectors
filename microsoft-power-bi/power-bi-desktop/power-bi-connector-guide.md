@@ -158,12 +158,12 @@ C:\odp64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\sys
 
 Error: "Oracle: ORA-12154: TNS:could not resolve the connect identifier specified"
 
-Check that you have added the user environment variables properly.  ie: TNS_ADMIN and path to wallet directory
+Check that you have added the user environment variables properly.  ie: TNS_ADMIN and path to tnsnames.ora and sqlnet.ora
 
 ```
 C:\WINDOWS\system32>echo %TNS_ADMIN%
 
-C:\Wallet\Wallet files...
+C:\<Oracle Home\network\admin
 ```
 
 Note: A restart of the Windows OS or the Power BI application may be needed for the environment variables to take effect.

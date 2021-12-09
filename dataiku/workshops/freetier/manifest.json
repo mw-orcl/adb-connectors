@@ -10,7 +10,7 @@
     {
       "title": "Connecting without Wallet",
       "description": "Introduction",
-      "filename": "../../common/tls-no-wallet/tls-no-wallet.md"
+      "filename": "../../common/tls-no-wallet/no-wallet.md"
     },
     {
       "title": "JDBC Configuration",
