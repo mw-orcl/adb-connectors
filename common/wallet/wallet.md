@@ -24,7 +24,11 @@ After provisioning Oracle Autonomous Database (ADB), a wallet containing client 
 
 
 
-4. From the unzipped wallet directory, copy the tnsnames.ora and sqlnet.ora to the Oracle Client directory `c:\<Oracle Home>\network\admin`.  You may create the directory if it is not there, ie: in the case the Oracle Instant Client is not needed, as you are using JDBC Thin.
+4. From the unzipped wallet directory, copy the tnsnames.ora and sqlnet.ora to the Oracle Client directory `c:\<Oracle Home>\network\admin` or copy them to the directory specified by your BI/ETL tool vendor.  The tool vendor may have preferred location for these Oracle files.  
+
+   Note: If you do not have an Oracle Client directory and your tool vendor does not specify where to put the files, you may create the directory.
+
+   Note: If you are using JDBC Thin, you do not need the Oracle Instant Client.
 
 For example: `mkdir``C:\oracle\instantclient_19_3\network\admin`
 
