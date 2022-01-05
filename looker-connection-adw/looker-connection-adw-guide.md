@@ -1,20 +1,23 @@
-## **Connecting Microsoft Power BI Desktop to Oracle Autonomous Database**
+## **Creating a connection from Looker to Oracle Autonomous Data Warehouse**
 
 
 
-This step by step guide shows you how to configure Microsoft Power BI Desktop connectivity to Oracle Autonomous Database (ADB).
+This step by step guide shows you how to configure looker connectivity to Oracle Autonomous Database (ADB).
 
 These instructions use managed or unmanaged Oracle Data Provider for .NET (ODP.NET) for data access and work for both dedicated and shared infrastructure ADB.
 
 ## **Prerequisites**
 
-This document assumes that ADB, such as Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD) is provisioned and Power BI Desktop is installed on a Windows machine (local, in Azure, or OCI).  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
+This document assumes that ADB, such as Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD) is provisioned and looker is installed on a Windows machine.  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
 
+Follow the instructions in this Looker document to configure your Oracle ADWC instance
+for Looker. This will include creation of the looker user, which is referenced later in
+these instructions see [here] (https://docs.looker.com/setup-and-management/database-config/oracle)
 
-
-![adb](./images/adb-ui-details.png)
-
-
+The instructions for ADWC vary slightly. The first step, Encrypt Network Traffic, can be
+skipped as connections to ADWC are secured by default. Also, the instructions
+reference objects owned by the sys user. For ADWC, the admin user should be
+substituted wherever the sys user is referenced.
 
 ## **Configuring ODP.NET**
 
