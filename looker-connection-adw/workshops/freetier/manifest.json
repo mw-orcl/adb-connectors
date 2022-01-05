@@ -1,0 +1,16 @@
+{
+  "workshoptitle": "Creating a connection from Looker to Oracle Autonomous Data Warehouse",
+  "help": "vijay.balebail@oracle.com",
+  "tutorials": [
+    {
+      "title": "Autonomous Database Wallet",
+      "description": "Wallet",
+      "filename": "../../../common/wallet/wallet.md"
+    },
+    {
+      "title": "Creating a connection from Looker",
+      "description": "Guide",
+      "filename": "../../../looker-connection-adw/looker-connection-adw-guide.md"
+    }
+  ]
+}
