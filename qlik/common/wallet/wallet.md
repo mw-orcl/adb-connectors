@@ -28,10 +28,10 @@ After provisioning Oracle Autonomous Database (ADB), a wallet containing client 
 
    Note: If you do not have an Oracle Client directory and your tool vendor does not specify where to put the files, you may create the directory.
 
+   For example: `mkdir C:\oracle\instantclient_19_3\network\admin`
+   
    Note: If you are using JDBC Thin, you do not need the Oracle Instant Client.
-
-For example: `mkdir``C:\oracle\instantclient_19_3\network\admin`
-
+   
 5. Edit tnsnames.ora or sqlnet.ora to point to the directory of the unzipped wallet directory.  For sqlnet.ora, an example follows.  For tnsnames.ora see below.
 
 ```
@@ -43,7 +43,7 @@ SSL_SERVER_DN_MATCH=yes
 
 6. In the Windows user environment variables dialog, create the `TNS_ADMIN` variable. Set its value to the directory location `c:\<Oracle Home>\network\admin`.   In Linux, use export path `TNS_ADMIN`.
 
-![tns_admin](./images/tns-admin-variable.png)
+![win-env](./images/win-env-variables.png)
 
 
 

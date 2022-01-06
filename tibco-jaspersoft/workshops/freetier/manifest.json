@@ -1,10 +1,10 @@
 {
-  "workshoptitle": "Connecting dataiku to Oracle Autonomous Database",
-  "help": "vijay.balebail@oracle.com",
+  "workshoptitle": "Connecting Tibco Jaspersoft to Oracle Autonomous Database",
+  "help": "troy.anthony@oracle.com",
   "tutorials": [
     {
       "title": "Connecting with Wallet",
-      "description": "Introduction",
+      "description": "Wallet",
       "filename": "../../common/wallet/wallet.md"
     },
     {
@@ -13,14 +13,14 @@
       "filename": "../../common/tls-no-wallet/no-wallet.md"
     },
     {
-      "title": "JDBC Configuration",
-      "description": "Configuration",
+      "title": "Oracle JDBC Configuration",
+      "description": "Instant Client Configuration",
       "filename": "../../common/jdbc/jdbc-thin.md"
     },
     {
-      "title": "dataiku Connection Guide",
+      "title": "Tibco Jaspersoft Connection Guide",
       "description": "Introduction",
-      "filename": "../../dataiku-connector-guide.md"
+      "filename": "../../tibco-jaspersoft-connector-guide.md"
     }
   ]
 }
