@@ -5,7 +5,7 @@
     {
       "title": "Autonomous Database Wallet",
       "description": "Wallet",
-      "filename": "../../../common/wallet/wallet.md"
+      "filename": "../../../looker-connection-adw/wallet/wallet.md"
     },
     {
       "title": "Creating a connection from Looker",
