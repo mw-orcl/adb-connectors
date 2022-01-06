@@ -1,12 +1,12 @@
 ## **Download and Configure the Wallet**
 
-After provisioning Oracle Autonomous Database (ADB), a wallet containing client credentials is required to connect to ADB. 
+After provisioning Oracle Autonomous Database (ADB), a wallet containing client credentials is required to connect to ADB.
 
 ![adb](./images/adb-ui-details.png)
 
 
 
-1. Download the wallet to the client machine running your BI or ETL tool.   Select Instance Wallet for the Wallet Type and click Download Wallet.
+1. Download the wallet to the client machine running your looker BI tool.   Select Instance Wallet for the Wallet Type and click Download Wallet.
 
 ![adb-wallet](./images/adb-wallet-download.png)
 
@@ -24,11 +24,11 @@ After provisioning Oracle Autonomous Database (ADB), a wallet containing client 
 
 
 
-4. From the unzipped wallet directory, copy the tnsnames.ora and sqlnet.ora to the Oracle Client directory `c:\<Oracle Home>\network\admin` or copy them to the directory specified by your BI/ETL tool vendor.  The tool vendor may have preferred location for these Oracle files.  
+4. From the unzipped wallet directory, copy the tnsnames.ora and sqlnet.ora to the Oracle Client directory  or copy them to the directory specified by your BI/ETL tool vendor.  The tool vendor may have preferred location for these Oracle files.  
 
-   Note: If you do not have an Oracle Client directory and your tool vendor does not specify where to put the files, you may create the directory.
+   Note: Looker server has the Oracle JDBC Thin already installed.  So you don’t need the JDBC module  for this.
 
-   Note: If you are using JDBC Thin, you do not need the Oracle Instant Client.
+
 
 For example: `mkdir``C:\oracle\instantclient_19_3\network\admin`
 
@@ -59,7 +59,7 @@ adwptr_high = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tc
 adwbi_low = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.us-phoenix-1.oraclecloud.com))(connect_data=(service_name=bk8uqvi2h_adwbi_low.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adwc.uscom-east-1.oraclecloud.com, OU=Oracle BMCS US, O=Oracle Corporation, L=Redwood City, ST=California, C=US")(MY_WALLET_DIRECTORY=C:\DATA\WALLET\Wallet_ADWBI)))
 ```
 
- 
+
 
 7. Open the TNSNAMES.ora file in the wallet directory to see which ADB net service names are available to connect to. Below you see three different ones: `adwptr_high`, `adwptr_low`, and `adwptr_medium`. Your ADB net service names will likely be named differently.
 
@@ -85,4 +85,3 @@ sqlnet.ora example with wallet directory:
 WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY="C:\Oracle\Wallets\Wallet_ADBPH")))
 SSL_SERVER_DN_MATCH=yes
 ```
-
