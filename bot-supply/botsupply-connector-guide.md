@@ -1,7 +1,6 @@
-## **Connecting dataiku to Oracle Autonomous Database**
+## **Creating a connection from BotSupply Insights to  Oracle Autonomous Data Warehouse (ADW) **
 
-This guide shows you how to configure dataiku connectivity to Oracle Autonomous Database (ADB).
-
+This guide shows you how to configure connection from BotSupply Insights to  Oracle Autonomous Data Warehouse (ADW)
 These instructions use JDBC Thin driver from Oracle.
 
 
@@ -12,19 +11,11 @@ These instructions use JDBC Thin driver from Oracle.
 | Oracle Client  | 19.6  |
 
 
-
-
-## **Prerequisites**
-
-- This document assumes that ADB, such as Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD) is provisioned and Dataiku is installed on a machine (local, OCI, or other cloud).   To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
-
-- Oracle JDBC Thin driver is downloaded and configured.  Specific instructions on installing the jar file to dataiku are [here](https://doc.dataiku.com/dss/latest/connecting/sql/oracle.html#installing-the-jdbc-driver).
-- ADB Wallet is downloaded on your machine running dataiku.
-
 ## **Configure the Connection**
+
 ## Step 1:  Provision ADWC and Configure Oracle Client on ISV  
 
-1. Provision Autonomous Data Warehouse Cloud (ADWC) and download the corresponding credentials.zip file to the system that will have the BotSupply Insights installation and also get password of ADMIN for the ADWC instance. For the Oracle documentation to provision ADWC click here. Also check [Downloading Client Credentials (Wallets)](https://doc.dataiku.com/dss/latest/connecting/sql/oracle.html#installing-the-jdbc-driver).
+1. Provision Autonomous Data Warehouse Cloud (ADWC) and download the corresponding credentials.zip file to the system that will have the BotSupply Insights installation and also get password of ADMIN for the ADWC instance. For the Oracle documentation to provision ADWC click here. Also check [Downloading Client Credentials (Wallets)](../../../common/wallet/wallet.md").
 
 2. All connections to Autonomous Data Warehouse Cloud use certificate-based authentication and Secure Sockets Layer (SSL). Uncompress credentials.zip file into a secure folder.
 
