@@ -1,5 +1,5 @@
 {
-  "workshoptitle": "Connecting Qlik to Oracle Autonomous Database",
+  "workshoptitle": "Connecting Tableau Online to Oracle Autonomous Database",
   "help": "vijay.balebail@oracle.com",
   "tutorials": [
     {
@@ -8,19 +8,14 @@
       "filename": "../../../common/wallet/wallet.md"
     },
     {
-      "title": "Connecting without Wallet",
-      "description": "Introduction",
-      "filename": "../../../common/tls-no-wallet/no-wallet.md"
-    },
-    {
       "title": "Oracle Instant Client for Windows Configuration",
       "description": "Instant Client Configuration",
       "filename": "../../../common/instant-client/instant-client-windows-64.md"
     },
     {
-      "title": "Qlik Connection Guide",
+      "title": "Tableau Online Connection Guide",
       "description": "Introduction",
-      "filename": "../../qlik-connector-guide.md"
+      "filename": "../../tableau-online-connector-guide.md"
     }
   ]
 }

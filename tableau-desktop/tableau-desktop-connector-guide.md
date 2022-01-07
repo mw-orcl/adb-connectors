@@ -1,6 +1,6 @@
-## **Connecting Tableau Desktop to Oracle Autonomous Database**
+## **Connecting Tableau to Oracle Autonomous Database**
 
-This guide shows you how to configure Tableau Desktop connectivity to Oracle Autonomous Database (ADB). 
+This guide shows you how to configure Tableau Desktop/Server connectivity to Oracle Autonomous Database (ADB). 
 
 These instructions use Oracle Instant Client from Oracle.
 
@@ -9,9 +9,9 @@ These instructions use Oracle Instant Client from Oracle.
 This document assumes the following:
 
 - Autonomous Database (ADB) is provisioned. ADB includes Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD).  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
-- Tableau Desktop is installed on a machine (local, OCI, or other cloud).   
+- Tableau Desktop/Server is installed on a machine (local, OCI, or other cloud).   
 - Oracle Instant Client is downloaded and configured.  To install Oracle Instant Client see [here](https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html).
-- ADB Wallet is downloaded on your machine running Tableau Desktop.
+- ADB Wallet is downloaded on your machine running Tableau.
 
 ## **Configuring Tableau with Oracle Client**
 
@@ -49,7 +49,7 @@ C:\Users> echo %TNS_ADMIN%
 C:\app\client\product\19.3.0\client_1\network\admin 
 ```
 
-3. Open the Tableau Desktop and Choose Oracle as a data source under the ‘To a
+3. Open Tableau and Choose Oracle as a data source under the ‘To a
    Server’ section. 
 
 ![tableau](./images/tableau-connect-menu.png)

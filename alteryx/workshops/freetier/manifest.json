@@ -1,5 +1,5 @@
 {
-  "workshoptitle": "Connecting Qlik to Oracle Autonomous Database",
+  "workshoptitle": "Connecting Alteryx to Oracle Autonomous Database",
   "help": "vijay.balebail@oracle.com",
   "tutorials": [
     {
@@ -18,9 +18,9 @@
       "filename": "../../../common/instant-client/instant-client-windows-64.md"
     },
     {
-      "title": "Qlik Connection Guide",
+      "title": "Alteryx Connection Guide",
       "description": "Introduction",
-      "filename": "../../qlik-connector-guide.md"
+      "filename": "../../alteryx-connector-guide.md"
     }
   ]
 }
