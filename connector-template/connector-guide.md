@@ -1,7 +1,7 @@
 # Creating a connection from _______________ to  Oracle Autonomous Data Warehouse (ADW)
 
 
-## **Introduction**
+### **Introduction**
 
 
 | Validation Matrix  | Version  |
