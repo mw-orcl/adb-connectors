@@ -5,17 +5,17 @@
     {
       "title": "Connecting with Wallet",
       "description": "Introduction",
-      "filename": "../../common/wallet/wallet.md"
+      "filename": "../../../common/wallet/wallet.md"
     },
     {
       "title": "Connecting without Wallet",
       "description": "Introduction",
-      "filename": "../../common/tls-no-wallet/no-wallet.md"
+      "filename": "../../../common/tls-no-wallet/no-wallet.md"
     },
     {
       "title": "JDBC Configuration",
       "description": "Configuration",
-      "filename": "../../common/jdbc/jdbc-thin.md"
+      "filename": "../../../common/jdbc/jdbc-thin.md"
     },
     {
       "title": "dataiku Connection Guide",
