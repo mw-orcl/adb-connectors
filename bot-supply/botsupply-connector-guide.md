@@ -1,8 +1,7 @@
-## **Creating a connection from BotSupply Insights to  Oracle Autonomous Data Warehouse (ADW) **
+# Creating a connection from BotSupply Insights to  Oracle Autonomous Data Warehouse (ADW)
 
-This guide shows you how to configure connection from BotSupply Insights to  Oracle Autonomous Data Warehouse (ADW)
+This guide shows you how to configure connection from BotSupply Insights to  Oracle Autonomous Data Warehouse (ADW).
 These instructions use JDBC Thin driver from Oracle.
-
 
 
 | Validation Matrix  | Version  |
@@ -11,11 +10,20 @@ These instructions use JDBC Thin driver from Oracle.
 | Oracle Client  | 19.6  |
 
 
+## **Prerequisites**
+
+- Required access and credits to provision ADWC instance on Oracle Cloud.
+- Download Oracle JDBC Thin driver is downloaded on the app server were BotSupply is Installed.
+- If ADWC is already configured you have the ADMIN user password and ADB Wallet is downloaded on your machine running BotSupply.
+
 ## **Configure the Connection**
+
+![adb](./images/botsupply-connection-steps-diagram.png)
+
 
 ## Step 1:  Provision ADWC and Configure Oracle Client on ISV  
 
-1. Provision Autonomous Data Warehouse Cloud (ADWC) and download the corresponding credentials.zip file to the system that will have the BotSupply Insights installation and also get password of ADMIN for the ADWC instance. For the Oracle documentation to provision ADWC click here. Also check [Downloading Client Credentials (Wallets)](../../../common/wallet/wallet.md").
+1. Provision Autonomous Data Warehouse Cloud (ADWC) and download the corresponding credentials.zip file to the system that will have the BotSupply Insights installation and also get password of ADMIN for the ADWC instance. For the Oracle documentation to provision ADWC click here. Also check the set Downloading Client Credentials (Wallets).
 
 2. All connections to Autonomous Data Warehouse Cloud use certificate-based authentication and Secure Sockets Layer (SSL). Uncompress credentials.zip file into a secure folder.
 
@@ -52,12 +60,7 @@ These instructions use JDBC Thin driver from Oracle.
 4. Run npm run start from ADW/api directory.
 5. For subsequent runs use npm run restart.
 
-
-
-
-
-
 ## **Acknowledgements**
-* **Author(s)** - Vijay Balebail, Director Database Product Management
+* **Author(s)** - Dhruman Bhadeshiya
 * **Contributor(s)** -
 * **Last Updated By/Date** - Rajeev Rumale, January 2022

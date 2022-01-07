@@ -3,24 +3,19 @@
   "help": "vijay.balebail@oracle.com",
   "tutorials": [
     {
+      "title": "Creating a connection from BotSupply Insights",
+      "description": "Creating a connection from BotSupply Insights to Oracle Autonomous Database",
+      "filename": "../../botsupply-connector-guide.md"
+    },
+    {
       "title": "Connecting with Wallet",
-      "description": "Introduction",
+      "description": "Connecting with Wallet",
       "filename": "../../../common/wallet/wallet.md"
     },
     {
-      "title": "Connecting without Wallet",
-      "description": "Introduction",
-      "filename": "../../../common/tls-no-wallet/no-wallet.md"
-    },
-    {
-      "title": "JDBC Configuration",
-      "description": "Configuration",
+      "title": "JDBC Thin Driver Configuration",
+      "description": "JDBC Thin Driver Configuration",
       "filename": "../../../common/jdbc/jdbc-thin-wallet.md"
-    },
-    {
-      "title": "Creating a connection from BotSupply Insights",
-      "description": "Introduction",
-      "filename": "../../botsupply-connector-guide.md"
     }
   ]
 }
