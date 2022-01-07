@@ -8,6 +8,11 @@
       "filename": "../../../looker-connection-adw/wallet/wallet.md"
     },
     {
+      "title": "Autonomous Database without Wallet",
+      "description": "Wallet",
+      "filename": "../../../looker-connection-adw/tls-no-wallet/no-wallet.md"
+    },
+    {
       "title": "Creating a connection from Looker",
       "description": "Guide",
       "filename": "../../../looker-connection-adw/looker-connection-adw-guide.md"

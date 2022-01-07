@@ -30,21 +30,6 @@ After provisioning Oracle Autonomous Database (ADB), a wallet containing client 
 
 
 
-For example: `mkdir``C:\oracle\instantclient_19_3\network\admin`
-
-5. Edit tnsnames.ora or sqlnet.ora to point to the directory of the unzipped wallet directory.  For sqlnet.ora, an example follows.  For tnsnames.ora see below.
-
-```
-WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY="C:\DATA\WALLET\Wallet_ADWBI")))
-SSL_SERVER_DN_MATCH=yes
-```
-
-
-
-6. In the Windows user environment variables dialog, create the `TNS_ADMIN` variable. Set its value to the directory location `c:\<Oracle Home>\network\admin`.   In Linux, use export path `TNS_ADMIN`.
-
-![tns_admin](./images/tns-admin-variable.png)
-
 
 
 The tnsnames.ora file contains the net service names that will be used to connect to ADB.
