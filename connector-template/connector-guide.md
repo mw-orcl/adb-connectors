@@ -9,7 +9,7 @@
 | App Version  | X.0.0  |
 | Oracle Client  | 19.6  |
 
-## **Prerequisites**
+### **Prerequisites**
 
 - Required access and credits to provision ADWC instance on Oracle Cloud.
 - Download Oracle JDBC Thin driver is downloaded on the app server.
