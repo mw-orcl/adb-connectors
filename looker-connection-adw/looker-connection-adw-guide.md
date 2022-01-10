@@ -1,6 +1,6 @@
 ## **Creating a connection from Looker to Oracle Autonomous Data Warehouse**
 
-
+  ![pbi-get-data](./images/certification-matrix.png)
 
 This step by step guide shows you how to configure looker connectivity to Oracle Autonomous Database (ADB).
 
