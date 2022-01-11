@@ -18,6 +18,11 @@
       "filename": "../../common/instant-client/instant-client-windows-64.md"
     },
     {
+      "title": "Oracle Instant Client for Linux Configuration",
+      "description": "Instant Client Configuration",
+      "filename": "../../common/instant-client/instant-client-linux-64.md"
+    },
+    {
       "title": "SAS ACCESS Connection Guide",
       "description": "Introduction",
       "filename": "../../sas-access-connector-guide.md"
