@@ -3,6 +3,11 @@
   "help": "vijay.balebail@oracle.com",
   "tutorials": [
     {
+      "title": "SAS ACCESS Connection Guide",
+      "description": "Introduction",
+      "filename": "../../sas-access-connector-guide.md"
+    },
+    {
       "title": "Connecting with Wallet",
       "description": "Wallet",
       "filename": "../../common/wallet/wallet.md"
@@ -21,11 +26,6 @@
       "title": "Oracle Instant Client for Linux Configuration",
       "description": "Instant Client Configuration",
       "filename": "../../common/instant-client/instant-client-linux-64.md"
-    },
-    {
-      "title": "SAS ACCESS Connection Guide",
-      "description": "Introduction",
-      "filename": "../../sas-access-connector-guide.md"
     }
   ]
 }
