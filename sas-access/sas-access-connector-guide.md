@@ -27,6 +27,14 @@ This document assumes the following:
 
    `libname oralib oracle user=admin pw=<ADB password> path=<service name from tnsnames.ora>;`
 
+   Note: if you are using the ADB wallet, you can add the wallet directory path in the my_wallet_directory parameter as below:
+   
+   ```
+   adwptr_high = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.us-phoenix-1.oraclecloud.com))(connect_data=(service_name=bk8ui2h_adwptr_high.adwc.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adwc.uscom-east-1.oraclecloud.com, OU=Oracle BMCS US, O=Oracle Corporation, L=Redwood City, ST=California, C=US")(MY_WALLET_DIRECTORY=C:\DATA\WALLET\Wallet_ADWPTR)))
+   ```
+   
+   
+   
 4. Test out the connectivity using a tool like SAS Studio and run the following script to connect to ADB.
 
 ![test-access](./images/test-access.png)
