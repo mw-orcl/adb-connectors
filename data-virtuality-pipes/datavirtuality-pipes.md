@@ -9,7 +9,7 @@
 | DataVirtualityPipes | 2018-06 |
 | DataVirtualityPipes Professional | 2018-06 |
 | DataVirtualityLogical Data Warehouse  |   2.0.46  |
-| Oracle Database JDBCdriver  | ojdbc7.jar -12.1.0.2 JDBC Drivers & UCPfor CloudRelease <br/>[Note: This is different from the RELEASE version of the JDBCdriver as it contains the fix to supportTLSv1.2]  |
+| Oracle Database JDBCdriver  | ojdbc7.jar -12.1.0.2 JDBC Drivers & UCP for CloudRelease <br/>[Note: This is different from the RELEASE version of the JDBCdriver as it contains the fix to supportTLSv1.2]  |
 
 ### **Prerequisites**
 
