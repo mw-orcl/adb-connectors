@@ -8,18 +8,28 @@ These instructions use Oracle Instant Client from Oracle.
 
 This document assumes the following:
 
+- Tableau Desktop/Server is installed on a machine (local, OCI, or other cloud).  
 - Autonomous Database (ADB) is provisioned. ADB includes Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD).  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
-- Tableau Desktop/Server is installed on a machine (local, OCI, or other cloud).   
-- Oracle Instant Client is downloaded and configured.  To install Oracle Instant Client see [here](https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html).
 - ADB Wallet is downloaded on your machine running Tableau.
+- Oracle Instant Client is downloaded and configured.  To install Oracle Instant Client see [here](https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html).
 
 ## **Configuring Tableau with Oracle Client**
 
 Tableau Desktop/Server connects to Oracle Database using TCP connectivity from the Oracle Client. Tableau uses the Oracle Easy Connect method. 
 
-Before Tableau can use the Oracle Client, the system environment variable, `TNS_ADMIN`, needs to be setup. Typically `TNS_ADMIN` default value is `<ORACLE_HOME>/Network/Admin` directory.
+Before Tableau can use the Oracle Client, the system environment variable, `TNS_ADMIN`, needs to be set up. Typically `TNS_ADMIN` is set to  `<ORACLE_HOME>/Network/Admin` directory where your tnsnames.ora file is located.  
 
-1. Open the tnsames.ora file that was downloaded with the Oracle Instant Client and locate the service name your want to use for your ADB service.  Here is an example of the tnsnames.ora entry. 
+1. Test to make sure that your `TNS_ADMIN` environment variable is set correctly. Open
+   up a CMD prompt and issue the following command `echo %TNS_ADMIN%`. The example
+   output of the command should produce a valid directory pathway to the
+   `TNS_ADMIN` directory where tnsnames.ora is located.
+
+```
+C:\Users> echo %TNS_ADMIN%
+C:\app\client\product\19.3.0\client_1\network\admin 
+```
+
+2. Open the tnsames.ora file in the ...\network\admin directory and locate the service name you want to use for your ADB service.  Here is an example of the tnsnames.ora entries from the unzipped ADB wallet. 
 
 ```
 ADWCDemo_high = (description= (address=(protocol=tcps)(port=1522)(host=adwc.uscomeast1.oraclecloud.com))(connect_data=(service_name=yk2ddvkx2pyiekt_virtualitydemo_high.a
@@ -37,16 +47,6 @@ ADWCDemo_medium = (description=
 m.adwc.oraclecloud.com))(security=(ssl_server_cert_dn=
 "CN=adwc.uscom-east-1.oraclecloud.com,OU=Oracle BMCS US,O=Oracle
 Corporation,L=Redwood City,ST=California,C=US")) ) 
-```
-
-2. Test to make sure that your `TNS_ADMIN` environment variable is set correctly. Open
-   up a CMD prompt and issue the following command `echo %TNS_ADMIN%`. The example
-   output of the command should produce a valid directory pathway to the
-   `TNS_ADMIN` directory where tnsnames.ora is located.
-
-```
-C:\Users> echo %TNS_ADMIN%
-C:\app\client\product\19.3.0\client_1\network\admin 
 ```
 
 3. Open Tableau and Choose Oracle as a data source under the ‘To a

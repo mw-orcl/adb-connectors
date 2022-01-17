@@ -1,0 +1,12 @@
+{
+  "workshoptitle": "Connecting Erwin to Oracle Autonomous Database",
+  "help": "Kirk.gustafson@oracle.com",
+  "tutorials": [
+
+    {
+      "title": "Erwin Connection Guide",
+      "description": "Introduction",
+      "filename": "../../erwin-connector-guide.md"
+    }
+  ]
+}
