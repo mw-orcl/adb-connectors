@@ -1,62 +1,63 @@
-## **Connecting Qlik to Oracle Autonomous Database**
+## **Connecting SAS/ACCESS to Oracle Autonomous Database**
 
-This guide shows you how to configure Qlik connectivity to Oracle Autonomous Database (ADB). 
-
-These instructions use Oracle Instant Client from Oracle.
+This guide shows you how to configure SAS/ACCESS connectivity to Oracle Autonomous Database (ADB).   You can use this for SAS 9.4 and Viya 3.5.  
 
 ## **Prerequisites**
 
 This document assumes the following:
 
 - Autonomous Database (ADB) is provisioned. ADB includes Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD).  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
-- Qlik is installed on a machine (local, OCI, or other cloud).   
-- Oracle Instant Client is downloaded and configured.  To install Oracle Instant Client see [here](https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html).
-- ADB Wallet is downloaded on your machine running Qlik.
+- Oracle Database Client is downloaded and installed on your machine running SAS/ACCESS.  To install Oracle Database Client see [here](https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html).
+- ADB Wallet is downloaded on your machine running SAS/ACCESS.
 
-## **Configuring Qlik with Oracle Client**
+## **Configuring with Oracle Database Client**
 
-Qlik recommends downloading and using the Qlik ODBC Connector Package to connect
-to ADB. Complete information about how to download, install and create a system
-DSN is available on Qlik website [here](https://help.qlik.com/en-US/connectors/Subsystems/ODBC_connector_help/Content/Connectors_ODBC/Introduction/ODBC-connector.htm).
+1. Follow the instructions from the SAS [documentation](https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/acreldb/p1ujrhdoe1p743n12awcf7mwyg81.htm) to install and configure SAS/ACCESS Interface to Oracle.  As a prerequisite make sure that you have installed the Oracle Database Client 12.1.0.2 or higher on the SAS/ACCESS environment.
 
-ADB is a secured service and therefore encryption of network traffic is required. Qlik relies on Oracle Instant Client or an Oracle Client for that purpose.
+2. We first validate that the Oracle Database Client can communicate with ADB, and since it is installed on the same system as the SAS/ACCESS, it ensures that SAS/ACCESS Interface to Oracle is also configured correctly.
 
-Follow the Simba Configuration document to configure a system DSN on the Server.
+3. Test the Oracle Client with Oracle SQL*Plus
+   `sqlplus password/\"Password\"@ConnectString`
+   or
+   `sqlplus /nologsql> set define off`
 
-Note: A direct TNS connection without using the Qlik ODBC Connector is also possible
-but Qlik recommends using the ODBC Connector based connection to connect to an
-ADB service.
+   `sql> connect username/password@connectString`
 
-1. From the ODBC Data Source Administrator, Click on the Add button and choose the Simba
-   Oracle ODBC Driver which is part of the Qlik ODBC Connector Package.
+   ## **Connect SAS/ACCESS to ADB**
 
-![qlik dsn](./images/dsn-example.png)
+   Now that you have successfully configured the Oracle Client it is time to test SAS/ACCESS connectivity to ADB. Once the connection is established at the Oracle client layer,there is no change in configuration required from the SAS/ACCESS layer.  
 
+   `libname oralib oracle user=admin pw=<ADB password> path=<service name from tnsnames.ora>;`
+   
+   Note: if you are using the ADB wallet, you can add the wallet directory path in the my_wallet_directory parameter as below:
+   
+   ```
+   partners_low = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.us-phoenix-1.oraclecloud.com))(connect_data=(service_name=bk8ui2h_partners_low.adwc.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adwc.uscom-east-1.oraclecloud.com, OU=Oracle BMCS US, O=Oracle Corporation, L=Redwood City, ST=California, C=US")(MY_WALLET_DIRECTORY=C:\DATA\WALLET\Wallet_ADWPTR)))
+   ```
+   
+   
+   
+4. Test out the connectivity using a tool like SAS Studio and run the following script to connect to ADB.
 
+![test-access](./images/test-access.png)
 
-2. Fill in the Data Source Name, DSN, your TNS name is the Oracle net service name, this can be found in the tnsnames.ora file.   More information on connecting to ADB from Qlik is located [here](https://help.qlik.com/en-US/connectors/Subsystems/ODBC_connector_help/Content/Connectors_ODBC/Oracle/Create-Oracle-connection.htm).  Qlik documents that the tnsname.ora and sqlnet.ora should be place in the following for Qlik Sense and QlikView:
+![test-results](./images/test-results.png)
 
-   Qlik Sense Desktop:
+## **Connect from CAS to ADB**
 
-   %USERPROFILE%\AppData\Local\Programs\Common Files\Qlik\Custom Data\QvOdbcConnectorPackage\oracle\lib\network\admin
+Use caslib to add an Oracle Autonomous Database as a data source for SAS Cloud Analytic Service.
 
-   Qlik Sense Enterprise:
+The below path should be your ADB service name with parameter my_wallet_directory included.
 
-   C:\Program Files\Common Files\Qlik\Custom Data\QvOdbcConnectorPackage\oracle\lib\network\admin
+```
+caslib orcaslib desc='Oracle Caslib'    
+datasource=(srctype='oracle'               
+username='admin'               
+password='myPwd'               
+path="partners_low");
+```
 
-   QlikView:
-
-   C:\Program Files\Common Files\QlikTech\Custom Data\QvODBCConnectorPackage\oracle\lib\network\admin
-
-![dsn setup](./images/dsn-setup.png)
-
-3. You can also test the connection here before saving it.
-
-![success](./images/success.png)
-
-
-
-You are now ready to consume this system DSN in Qlik Sense Desktop.
+You are now ready to start exploring and visualizing your data.
 
 
 
@@ -64,6 +65,6 @@ You are now ready to consume this system DSN in Qlik Sense Desktop.
 
 ## **Acknowledgements**
 
-* **Author(s)** - Milton Wan, Database Product Management
-* **Contributor(s)** - 
+* **Author(s)** - Vijay Balebail, Database Product Management
+* **Contributor(s)** - Milton Wan
 * **Last Updated By/Date** - Milton Wan, December 2021

@@ -1,15 +1,23 @@
 ## **Connecting Alteryx to Oracle Autonomous Database**
 
+## **Introduction**
+
 This guide shows you how to configure Alteryx connectivity to Oracle Autonomous Database (ADB). 
 
 These instructions use Oracle Instant Client from Oracle.
+
+
+| Validation Matrix              | Version             |
+| ------------------------------ | ------------------- |
+| Alteryx Designer               | 2018.2              |
+| Oracle Database Instant Client | 12.1.0.2 and higher |
 
 ## **Prerequisites**
 
 This document assumes the following:
 
 - Autonomous Database (ADB) is provisioned. ADB includes Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD).  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
-- Qlik is installed on a machine (local, OCI, or other cloud).   
+- Alteryx is installed on a machine (local, OCI, or other cloud).   
 - Oracle Instant Client for Windows is downloaded and configured.  To install Oracle Instant Client see [here](https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html).
 - ADB Wallet is downloaded on your machine running Alteryx.
 
