@@ -6,6 +6,16 @@
       "title": "Connection Guide",
       "description": "Connection Guide",
       "filename": "../../datavirtuality-pipes.md"
+    },
+    {
+      "title": "Connecting with Java Thin Client",
+      "description": "Java Thin Client",
+      "filename": "../../../common/jdbc/jdbc-thin.md"
+    },
+    {
+      "title": "Connecting with Wallet",
+      "description": "Wallet",
+      "filename": "../../../common/wallet/wallet.md"
     }
   ]
 }

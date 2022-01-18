@@ -14,8 +14,8 @@
 ### **Prerequisites**
 
 - Required access and credits to provision ADWC instance on Oracle Cloud.
-- Download Oracle JDBC Thin driver is downloaded on the app server.
-- If ADWC is already configured you have the ADMIN user password and ADB Wallet is downloaded on app server. <br/>For the Oracle documentation to provision ADW please [check here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
+- Download [Oracle JDBC Thin driver](?lab=jdbc-thin) is downloaded on the app server.
+- If ADWC is already configured you have the ADMIN user password and ADB Wallet is downloaded on app server. <br/>Instructions for [downloading wallet](?lab=wallet) file. <br/>For the Oracle documentation to provision ADW please [check here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
 
 
 ## Create DataVirtuality Pipes connection
