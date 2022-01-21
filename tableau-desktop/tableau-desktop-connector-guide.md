@@ -10,7 +10,7 @@ This document assumes the following:
 
 - Tableau Desktop/Server is installed on a machine (local, OCI, or other cloud).  
 - Autonomous Database (ADB) is provisioned. ADB includes Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD).  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
-- ADB Wallet is downloaded on your machine running Tableau.
+- ADB Wallet is downloaded on your machine running Tableau.  To download and configure the wallet see here.[Oracle JDBC Thin driver](?lab=jdbc-thin)
 - Oracle Instant Client is downloaded and configured.  To install Oracle Instant Client see [here](https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html).
 
 ## **Configuring Tableau with Oracle Client**
