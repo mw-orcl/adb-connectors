@@ -1,6 +1,6 @@
 ## **Connecting Tibco Jaspersoft to Oracle Autonomous Database**
 
-This guide shows you how to configure Tibco Jaspersoft connectivity to Oracle Autonomous Database (ADB). 
+This guide shows you how to configure Tibco Jaspersoft connectivity to Oracle Autonomous Database (ADB).
 
 These instructions were documented using Jaspersoft 7.8 and Oracle Client 19.8.
 
@@ -8,8 +8,9 @@ These instructions were documented using Jaspersoft 7.8 and Oracle Client 19.8.
 
 - Autonomous Database (ADB) is provisioned. ADB includes Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD).  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
 - Jaspersoft is installed on a machine (local, OCI, or other cloud).   
-- Oracle Instant Client is downloaded and configured.  To install Oracle Instant Client see [here](https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html).
-- ADB Wallet is downloaded on your machine running Jaspersoft.
+- If you are connecting with ADB Wallet, download it on your machine running Jaspersoft.  To download and configure the wallet see [here](?lab=wallet).
+- If you are not connecting with ADB Wallet, configure ADB with TLS  [here](?lab=no-wallet).
+- Oracle Instant Client is downloaded and configured.  To install Oracle Instant Client see [here](?lab=instant-client-windows-64).
 
 ## **Configuring Jaspersoft with Oracle Client**
 
@@ -26,7 +27,7 @@ Here is a diagram on the steps to configure Jaspersoft.
    For example, on Linux:
 
    ```
-   WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY="/home/adwc_credentials"))) 
+   WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY="/home/adwc_credentials")))
    SSL_SERVER_DN_MATCH=yes
    ```
 
@@ -36,7 +37,7 @@ Here is a diagram on the steps to configure Jaspersoft.
    WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY="C:\Work_files\Workdata\wallets"))) SSL_SERVER_DN_MATCH=yes
    ```
 
-   
+
 
 4. Create the TNS_ADMIN environment variable and set it to the location of the secure folder containing the credentials file. The tnsnames.ora file provided with the credentials zip file contains three database service names identifiable as high, medium and low. The predefined service names provide different levels of performance and concurrency for Autonomous Data Warehouse Cloud. Use one of these service names in your `ConnectString`.
 
@@ -54,7 +55,7 @@ Here is a diagram on the steps to configure Jaspersoft.
 
 The JDBC drivers are certified with a JDK version.  ojdbc8.jar is certified with JDK8, JDK9, JDK11, ojdbc10.jar is certified with JDK10, JDK11.
 
-1. Install the appropriate JDK.
+1. Install the appropriate JDBC driver.
    The Oracle 19c (19.8) JDBC client driver can be downloaded from [JDBC Driver and UCP Downloads.](https://www.oracle.com/database/technologies/appdev/jdbc-ucp-19-8-c-downloads.html)  Download either ojdbc8-full.tar.gz or ojdbc10-full.jar.gz.
 
 ## **Install Jaspersoft**

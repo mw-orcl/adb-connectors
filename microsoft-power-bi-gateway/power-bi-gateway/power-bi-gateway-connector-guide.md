@@ -10,13 +10,14 @@ These instructions use managed or unmanaged Oracle Data Provider for .NET (ODP.N
 
 ## **Prerequisites**
 
-This document assumes ADB, such as Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD) is provisioned on OCI.  
+- This document assumes ADB, such as Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD) is provisioned on OCI. To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
+- ADB Wallet is downloaded on your machine running Power BI Gateway.  To download and configure the wallet see [here](?lab=wallet).
 
 ![adb](./images/adb-ui-details.png)
 
 
 
-## **Install and Setup** 
+## **Install and Setup**
 
 1. Create Power BI Service in Azure.
 
@@ -80,9 +81,9 @@ https://www.oracle.com/database/technologies/oracle19c-windows-downloads.html
 
 ## **Configuring ODP.NET**
 
-This tutorial was tested with unmanaged ODP.NET for Oracle database connectivity. 
+This tutorial was tested with unmanaged ODP.NET for Oracle database connectivity.
 
-8. Download 64-bit ODAC 19.3 from the ODAC Xcopy section in the middle of this [Oracle web page](https://www.oracle.com/database/technologies/dotnet-odacdeploy-downloads.html). 
+8. Download 64-bit ODAC 19.3 from the ODAC Xcopy section in the middle of this [Oracle web page](https://www.oracle.com/database/technologies/dotnet-odacdeploy-downloads.html).
 
 ![odac-xcopy](./images/odac-xcopy-download.png)
 
