@@ -11,7 +11,6 @@ These instructions use managed or unmanaged Oracle Data Provider for .NET (ODP.N
 ## **Prerequisites**
 
 - This document assumes ADB, such as Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD) is provisioned on OCI. To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
-- ADB Wallet is downloaded on your machine running Power BI Gateway.  To download and configure the wallet see [here](?lab=wallet).
 
 ![adb](./images/adb-ui-details.png)
 
@@ -31,7 +30,7 @@ These instructions use managed or unmanaged Oracle Data Provider for .NET (ODP.N
 
 ![win-instance](./images/win-instance.png)
 
-
+Download the ADB Wallet on your machine running Microsoft Data Gateway.  To download and configure the wallet see [here](?lab=wallet).
 
 3. Install Microsoft Data Gateway on the Windows instance with these steps:
    1. Connect to the Power BI Service
@@ -67,7 +66,7 @@ These instructions use managed or unmanaged Oracle Data Provider for .NET (ODP.N
 
 ## **Install the Oracle Client**
 
-6. Download Oracle Client 19c on the Windows instance running the Data Gatway.
+6. Download Oracle Client 19c on the Windows instance running the Data Gateway.
 
 https://www.oracle.com/database/technologies/oracle19c-windows-downloads.html
 
