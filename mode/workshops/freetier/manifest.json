@@ -1,0 +1,16 @@
+{
+  "workshoptitle": "Connecting Mode to Oracle Autonomous Database",
+  "help": "vijay.balebail@oracle.com",
+  "tutorials": [
+    {
+      "title": "Mode Connection Guide",
+      "description": "Introduction",
+      "filename": "../../mode-connector-guide.md"
+    },
+    {
+      "title": "Appendix 1. Connecting without Wallet",
+      "description": "Introduction",
+      "filename": "../../../common/tls-no-wallet/no-wallet.md"
+    }
+  ]
+}
