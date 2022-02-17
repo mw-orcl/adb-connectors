@@ -2,14 +2,14 @@
 
 
 
-This step by step guide shows you how to configure Microsoft Power BI Desktop connectivity to Oracle Autonomous Database (ADB). 
+This step by step guide shows you how to configure Microsoft Power BI Desktop connectivity to Oracle Autonomous Database (ADB).
 
 These instructions use managed or unmanaged Oracle Data Provider for .NET (ODP.NET) for data access and work for both dedicated and shared infrastructure ADB.
 
 ## **Prerequisites**
 
-This document assumes that ADB, such as Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD) is provisioned and Power BI Desktop is installed on a Windows machine (local, in Azure, or OCI).  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08). 
-
+- This document assumes that ADB, such as Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD) is provisioned and Power BI Desktop is installed on a Windows machine (local, in Azure, or OCI).  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08). 
+- ADB Wallet is downloaded on your machine running Power BI Gateway.  To download and configure the wallet see [here](?lab=wallet).
 
 
 ![adb](./images/adb-ui-details.png)
@@ -32,15 +32,15 @@ Power BI may use managed ODP.NET or unmanaged ODP.NET for its ADB connectivity. 
 
 3. If the error indicates it is trying to use **Oracle.DataAccess.Client** assembly, then set up Power BI Desktop with **unmanaged ODP.NET**. If the error says it is trying to use **Oracle.ManagedDataAccess.Client**, then use **managed ODP.NET**.
 
- 
 
-If you need to use unmanaged ODP.NET, determine if Power BI is either 32-bit or 64-bit. To look up Power BI Desktop’s bitness, select File > Help > About. 
+
+If you need to use unmanaged ODP.NET, determine if Power BI is either 32-bit or 64-bit. To look up Power BI Desktop’s bitness, select File > Help > About.
 
 ![pbi-version](./images/power-bi-version.png)
 
-In the above screenshot, we see that 64-bit Power BI Desktop is being used. That means 64-bit unmanaged ODP.NET must be installed and configured for Power BI to connect to ADB. If 32-bit Power BI Desktop was being used, then 32-bit unmanaged ODP.NET would be required. 
+In the above screenshot, we see that 64-bit Power BI Desktop is being used. That means 64-bit unmanaged ODP.NET must be installed and configured for Power BI to connect to ADB. If 32-bit Power BI Desktop was being used, then 32-bit unmanaged ODP.NET would be required.
 
-The following instructions cover all scenarios, whether you are using managed or unmanaged ODP.NET or you are using 32-bit or 64-bit Power BI. 
+The following instructions cover all scenarios, whether you are using managed or unmanaged ODP.NET or you are using 32-bit or 64-bit Power BI.
 
 4. If you require 64-bit managed ODP.NET or unmanaged ODP.NET, download 64-bit ODAC 19.3 from the ODAC Xcopy section in the middle of this [Oracle web page](https://www.oracle.com/database/technologies/dotnet-odacdeploy-downloads.html). If you require 32-bit unmanaged ODP.NET, download 32-bit ODAC 19c.
 
@@ -92,7 +92,7 @@ b.    To configure managed ODP.NET
 
 `OraProvCfg /action:config /product:odpm /frameworkversion:v4.0.30319 /providerpath:"../../managed/common/Oracle.ManagedDataAccess.dll"`
 
- 
+
 
 8. (For unmanaged ODP.NET only) Edit the Windows environment variables by adding the path value of the 64-bit Oracle Client directory (e.g. c:\odp64) or 32-bit Oracle Client directory (e.g. c:\odp32) depending on the version Power BI you are using.
 
@@ -178,7 +178,7 @@ Typically, BI and ETL applications retrieve large data amounts from a source dat
 
 To increase the 32-bit or 64-bit unmanaged ODP.NET’s FetchSize, launch the Windows Registry editor (regedit.exe) and go to the following Registry key: `HKEY_LOCAL_MACHINE\SOFTWARE\Oracle\ODP.NET\4.122.19.1`
 
-Add the String Value "FetchSize" and set it to a value larger than the default (131072), such as 4194304 (4 MB). 
+Add the String Value "FetchSize" and set it to a value larger than the default (131072), such as 4194304 (4 MB).
 
 Restart Power BI Desktop and run your queries with the new setting.
 
@@ -214,7 +214,7 @@ To increase managed ODP.NET’s FetchSize, modify the .NET machine.config file. 
  </configuration>
 ```
 
- 
+
 
 Once done, restart Power BI Desktop so that ODP.NET will use the new setting.
 

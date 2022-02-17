@@ -1,6 +1,6 @@
 ## **Connecting Qlik to Oracle Autonomous Database**
 
-This guide shows you how to configure Qlik connectivity to Oracle Autonomous Database (ADB). 
+This guide shows you how to configure Qlik connectivity to Oracle Autonomous Database (ADB).
 
 These instructions use Oracle Instant Client from Oracle.
 
@@ -10,8 +10,9 @@ This document assumes the following:
 
 - Autonomous Database (ADB) is provisioned. ADB includes Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD).  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
 - Qlik is installed on a machine (local, OCI, or other cloud).   
-- Oracle Instant Client is downloaded and configured.  To install Oracle Instant Client see [here](https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html).
-- ADB Wallet is downloaded on your machine running Qlik.
+- If you are connecting with ADB Wallet, download it on your machine running Jaspersoft.  To download and configure the wallet see [here](?lab=wallet).
+- If you are not connecting with ADB Wallet, configure ADB with TLS  [here](?lab=no-wallet).
+- Oracle Instant Client is downloaded and configured.  To install Oracle Instant Client see [here](?lab=instant-client-windows-64).
 
 ## **Configuring Qlik with Oracle Client**
 
@@ -65,5 +66,5 @@ You are now ready to consume this system DSN in Qlik Sense Desktop.
 ## **Acknowledgements**
 
 * **Author(s)** - Milton Wan, Database Product Management
-* **Contributor(s)** - 
+* **Contributor(s)** -
 * **Last Updated By/Date** - Milton Wan, December 2021

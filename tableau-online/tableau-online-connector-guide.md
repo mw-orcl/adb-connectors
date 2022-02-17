@@ -13,9 +13,8 @@ The figure below shows the components to install and configure to connect Tablea
 
 
 1. Provision Autonomous Database (ADB). ADB includes Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD).  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
-2. To connect Tableau Online to ADB, a Tableau bridge software needs to be installed and configured on a 1 OCPU Compute running Windows on OCI.   Please follow instructions from [Oracle Doc] to create this VM.
-
-3. Download, install and configure the Oracle Instant Client 18c or higher on the Windows VM.  To install Oracle Instant Client see [here](https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html).
+2. To connect Tableau Online to ADB, a Tableau bridge software needs to be installed and configured on a 1 OCPU Compute running Windows on OCI. 
+3. Download, install and configure the Oracle Instant Client 18c or higher on the Windows VM.  To install Oracle Instant Client see [here](?lab=instant-client-windows-64).
 
 ![instant-client-install](./images/instant-client-install.png)
 
@@ -31,7 +30,7 @@ Next set TNS_ADMIN to directory where the wallet file is going to be unzipped. T
 
 ![tns-admin](./images/tns-admin-variable.png)
 
-Download the ADB wallet into the TNS_ADMIN directory using the instructions at Downloading Client Credentials (Wallets).
+Download the ADB wallet into the TNS_ADMIN directory using the instructions at Downloading Client Wallet Credentials [here](?lab=wallet).
 
 4. Download the Tableau Bridge from the Tableau website [provide link] and install and configure it using the following steps: 
 

@@ -1,4 +1,4 @@
-# Creating a connection from IBM Cognos Analytics Server to Oracle Autonomous Data Warehouse( ADW)
+# Creating a connection from IBM Cognos Analytics Server to Oracle Autonomous Data Warehouse(ADW)
 
 
 | Validation Matrix  | Version  |
@@ -8,9 +8,9 @@
 
 ### **Prerequisites**
 
-- Required access and credits to provision ADWC instance on Oracle Cloud.
-- Download Oracle JDBC Thin driver is downloaded on the app server.
-- If ADWC is already configured you have the ADMIN user password and ADB Wallet is downloaded on app server.
+- Required access and credits to provision ADW instance on Oracle Cloud.  To provision ADW, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
+- Oracle JDBC Thin driver is downloaded on the app server. To download and configure, see [here](lab?=jdbc-thin).
+- If ADW is already configured you have the ADMIN user password and ADB Wallet is [downloaded](lab?=wallet) on app server.
 
 
 ## **Configure the Connection**
