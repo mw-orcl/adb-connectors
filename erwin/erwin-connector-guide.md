@@ -5,20 +5,20 @@
 This step by step tutorial guides how to configure Erwin Data Modeler connectivity to Oracle Autonomous Database (ADB).
 
 ![Picture1](./images/ERWINpic1.png)
+## **Prerequisites**
 
-This document assumes that an ADB, such as Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), was provisioned.
+This document assumes the following:
+- Autonomous Database (ADB) is provisioned. ADB includes Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD).  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
 
 ![Picture2](./images/ERWINpic2.png)
 
-*Note: Please check here for the Oracle documentation to [provision ADW](https://www.oracle.com/webfolder/technetwork/tutorials/obe/cloud/adwc/OBE_Provisioning_Autonomous_Data_Warehouse_Cloud_bak/provisioning_autonomous_data_warehouse_cloud_v2.html).
 
-1. Download the corresponding credentials zip file to the system that has Erwin Data Modeler installed.
+1. [Download](lab?=wallet) the corresponding ADB credentials zip file to the system that has Erwin Data Modeler installed.
 
 ​	These credential files will be used to connect Erwin Data Modeler to ADB.
 
 ![Picture3](./images/ERWINpic3.png)
 
-*Note: Also check Downloading Client Credentials (Wallets).
 
 2. Download and Install Erwin Data Modeler – https://erwin.com/order-fulfillment/
 

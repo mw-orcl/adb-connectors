@@ -7,8 +7,8 @@ This guide shows you how to configure SAS/ACCESS connectivity to Oracle Autonomo
 This document assumes the following:
 
 - Autonomous Database (ADB) is provisioned. ADB includes Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD).  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
-- Oracle Database Client is downloaded and installed on your machine running SAS/ACCESS.  To install Oracle Database Client see [here](https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html).
-- ADB Wallet is downloaded on your machine running SAS/ACCESS.
+- ADB Wallet is downloaded on your machine running SAS/ACCESS.  To download and configure the wallet see [here](?lab=wallet).
+- Oracle Instant Client is downloaded and configured on your machine running SAS/ACCESS.  To install Oracle Instant Client see [here](?lab=instant-client-windows-64).
 
 ## **Configuring with Oracle Database Client**
 
@@ -28,15 +28,15 @@ This document assumes the following:
    Now that you have successfully configured the Oracle Client it is time to test SAS/ACCESS connectivity to ADB. Once the connection is established at the Oracle client layer,there is no change in configuration required from the SAS/ACCESS layer.  
 
    `libname oralib oracle user=admin pw=<ADB password> path=<service name from tnsnames.ora>;`
-   
+
    Note: if you are using the ADB wallet, you can add the wallet directory path in the my_wallet_directory parameter as below:
-   
+
    ```
    partners_low = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.us-phoenix-1.oraclecloud.com))(connect_data=(service_name=bk8ui2h_partners_low.adwc.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adwc.uscom-east-1.oraclecloud.com, OU=Oracle BMCS US, O=Oracle Corporation, L=Redwood City, ST=California, C=US")(MY_WALLET_DIRECTORY=C:\DATA\WALLET\Wallet_ADWPTR)))
    ```
-   
-   
-   
+
+
+
 4. Test out the connectivity using a tool like SAS Studio and run the following script to connect to ADB.
 
 ![test-access](./images/test-access.png)

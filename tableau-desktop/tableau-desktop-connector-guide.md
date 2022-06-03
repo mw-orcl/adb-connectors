@@ -1,6 +1,6 @@
 ## **Connecting Tableau to Oracle Autonomous Database**
 
-This guide shows you how to configure Tableau Desktop/Server connectivity to Oracle Autonomous Database (ADB). 
+This guide shows you how to configure Tableau Desktop/Server connectivity to Oracle Autonomous Database (ADB).
 
 These instructions use Oracle Instant Client from Oracle.
 
@@ -10,12 +10,12 @@ This document assumes the following:
 
 - Tableau Desktop/Server is installed on a machine (local, OCI, or other cloud).  
 - Autonomous Database (ADB) is provisioned. ADB includes Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD).  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
-- ADB Wallet is downloaded on your machine running Tableau.
-- Oracle Instant Client is downloaded and configured.  To install Oracle Instant Client see [here](https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html).
+- ADB Wallet is downloaded on your machine running Tableau.  To download and configure the wallet see [here](?lab=wallet).
+- Oracle Instant Client is downloaded and configured.  To install Oracle Instant Client see [here](?lab=instant-client-windows-64).
 
 ## **Configuring Tableau with Oracle Client**
 
-Tableau Desktop/Server connects to Oracle Database using TCP connectivity from the Oracle Client. Tableau uses the Oracle Easy Connect method. 
+Tableau Desktop/Server connects to Oracle Database using TCP connectivity from the Oracle Client. Tableau uses the Oracle Easy Connect method.
 
 Before Tableau can use the Oracle Client, the system environment variable, `TNS_ADMIN`, needs to be set up. Typically `TNS_ADMIN` is set to  `<ORACLE_HOME>/Network/Admin` directory where your tnsnames.ora file is located.  
 
@@ -26,10 +26,10 @@ Before Tableau can use the Oracle Client, the system environment variable, `TNS_
 
 ```
 C:\Users> echo %TNS_ADMIN%
-C:\app\client\product\19.3.0\client_1\network\admin 
+C:\app\client\product\19.3.0\client_1\network\admin
 ```
 
-2. Open the tnsames.ora file in the ...\network\admin directory and locate the service name you want to use for your ADB service.  Here is an example of the tnsnames.ora entries from the unzipped ADB wallet. 
+2. Open the tnsames.ora file in the ...\network\admin directory and locate the service name you want to use for your ADB service.  Here is an example of the tnsnames.ora entries from the unzipped ADB wallet.
 
 ```
 ADWCDemo_high = (description= (address=(protocol=tcps)(port=1522)(host=adwc.uscomeast1.oraclecloud.com))(connect_data=(service_name=yk2ddvkx2pyiekt_virtualitydemo_high.a
@@ -46,11 +46,11 @@ ADWCDemo_medium = (description=
 (address=(protocol=tcps)(port=1522)(host=adwc.uscom-east1.oraclecloud.com))(connect_data=(service_name=yk2ddvkx2pyiekt_virtualitydemo_mediu
 m.adwc.oraclecloud.com))(security=(ssl_server_cert_dn=
 "CN=adwc.uscom-east-1.oraclecloud.com,OU=Oracle BMCS US,O=Oracle
-Corporation,L=Redwood City,ST=California,C=US")) ) 
+Corporation,L=Redwood City,ST=California,C=US")) )
 ```
 
 3. Open Tableau and Choose Oracle as a data source under the ‘To a
-   Server’ section. 
+   Server’ section.
 
 ![tableau](./images/tableau-connect-menu.png)
 
@@ -60,7 +60,7 @@ Corporation,L=Redwood City,ST=California,C=US")) )
 
 ![connection](./images/oracle-connect-screen.png)
 
-You are now ready to analyze/visualize. 
+You are now ready to analyze/visualize.
 
 ![visualize](./images/tableau-visualize.png)
 
@@ -69,5 +69,5 @@ You are now ready to analyze/visualize.
 ## **Acknowledgements**
 
 * **Author(s)** - Milton Wan, Database Product Management
-* **Contributor(s)** - 
+* **Contributor(s)** -
 * **Last Updated By/Date** - Milton Wan, December 2021
