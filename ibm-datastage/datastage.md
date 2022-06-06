@@ -27,7 +27,6 @@ In this lab, you will:
 
 ### Prerequisites
 
-
 * An Oracle Free Tier, Always Free, Paid or LiveLabs Cloud Account
 * An IBM Cloud Account
 
