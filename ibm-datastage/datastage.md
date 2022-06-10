@@ -96,7 +96,4 @@ username and password to test the connection
 * [Why DataDirect?](https://www.progress.com/faqs/datadirect-odbc-faqs/datadirect-odbc-features/oracle-wire-protocol-odbc-driver)
 
 ## Acknowledgements
-* **Author** - <Blake Hendricks, Database Product Manager, 6/6/2022>
-* **Adapted for Cloud by** -  <Name, Group> -- optional
-* **Last Updated By/Date** - <Name, Group, Month Year>
-* **Workshop (or Lab) Expiry Date** - <Month Year> -- .
+* **Author** - Blake Hendricks, Database Product Manager, 6/6/2022
