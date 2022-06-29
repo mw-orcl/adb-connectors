@@ -71,5 +71,5 @@ You are now ready to analyze/visualize.
 ## **Acknowledgements**
 
 * **Author(s)** - Milton Wan, Database Product Management
-* **Contributor(s)** -
+* **Contributor(s)** - Blake Hendricks, Database Product Management
 * **Last Updated By/Date** - Blake Hendricks, Database Product Management June 2022
