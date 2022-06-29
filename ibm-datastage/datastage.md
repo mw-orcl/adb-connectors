@@ -42,7 +42,7 @@ In this lab, you will:
   * **Note:** Oracle credentials file is a zipped file that contains all the wallet formats as well as a predefined tnsnames.ora and sqlnet.ora that will be required to make a tnsnames based connection. This credentials file is protected by a password based encryption. Hold on to this password as you will use this password later on during the driver configuration. It will be referred to as `KeyStore/TrustStore` password.
 
 
-2. Please refer to the Progress DataDirect documentation [here](https://docs.progress.com/bundle/datadirect-odbc-installation/page/Welcome-to-the-Progress-DataDirect-for-ODBC-Drivers-Installation-Guide.html) to install and configure the DataDirect Oracle Wire driver based on your OS. DataDirect Oracle Wire driver is available for Windows (32 bit/64 bit), Unix/Linux.
+2. Please refer to the Progress DataDirect documentation [here](https://docs.progress.com/bundle/datadirect-odbc-installation/page/Installation-on-Windows.html). Click [here](https://www.progress.com/odbc/oracle-database) to install and configure the DataDirect Oracle Wire driver based on your OS. DataDirect Oracle Wire driver is available for Windows (32 bit/64 bit), Unix/Linux.
   * **Note:** Only the 32-bit version of the drivers is supported for DataStage on Windows.
 
 
