@@ -9,13 +9,13 @@
 | DataVirtualityPipes | 2018-06 |
 | DataVirtualityPipes Professional | 2018-06 |
 | DataVirtualityLogical Data Warehouse  |   2.0.46  |
-| Oracle Database JDBCdriver  | ojdbc7.jar -12.1.0.2 JDBC Drivers & UCPfor CloudRelease <br/>[Note: This is different from the RELEASE version of the JDBCdriver as it contains the fix to supportTLSv1.2]  |
+| Oracle Database JDBCdriver  | ojdbc7.jar -12.1.0.2 JDBC Drivers & UCP for CloudRelease <br/>[Note: This is different from the RELEASE version of the JDBCdriver as it contains the fix to supportTLSv1.2]  |
 
 ### **Prerequisites**
 
 - Required access and credits to provision ADWC instance on Oracle Cloud.
-- Download Oracle JDBC Thin driver is downloaded on the app server.
-- If ADWC is already configured you have the ADMIN user password and ADB Wallet is downloaded on app server. <br/>For the Oracle documentation to provision ADW please [check here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
+- Download [Oracle JDBC Thin driver](?lab=jdbc-thin) is downloaded on the app server.
+- If ADWC is already configured you have the ADMIN user password and ADB Wallet is downloaded on app server. <br/>Instructions for [downloading wallet](?lab=wallet) file. <br/>For the Oracle documentation to provision ADW please [check here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
 
 
 ## Create DataVirtuality Pipes connection
