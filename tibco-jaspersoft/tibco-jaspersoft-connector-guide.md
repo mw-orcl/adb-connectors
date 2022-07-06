@@ -8,9 +8,9 @@ These instructions were documented using Jaspersoft 7.8 and Oracle Client 19.8.
 
 - Autonomous Database (ADB) is provisioned. ADB includes Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD).  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
 - Jaspersoft is installed on a machine (local, OCI, or other cloud).   
-- If you are connecting with ADB Wallet, download it on your machine running Jaspersoft.  To download and configure the wallet see [here](?lab=wallet).
-- If you are not connecting with ADB Wallet, configure ADB with TLS  [here](?lab=no-wallet).
-- Oracle Instant Client is downloaded and configured.  To install Oracle Instant Client see [here](?lab=instant-client-windows-64).
+- If you are connecting with ADB Wallet, download it on your machine running Jaspersoft.  To download and configure the wallet see [here](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/cswgs/autonomous-connect-download-credentials.html#GUID-B06202D2-0597-41AA-9481-3B174F75D4B1).
+- If you are not connecting with ADB Wallet, configure ADB with TLS  [here](https://blogs.oracle.com/developers/post/securely-connecting-to-autonomous-db-without-a-wallet-using-tls).
+- Oracle Instant Client is downloaded and configured.  To install Oracle Instant Client see [here](https://www.oracle.com/database/technologies/instant-client.html).
 
 ## **Configuring Jaspersoft with Oracle Client**
 
@@ -28,7 +28,7 @@ Here is a diagram on the steps to configure Jaspersoft.
 
    ```
    WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY="/home/adwc_credentials")))
-   SSL_SERVER_DN_MATCH=yes
+   SSL_SERVER_DN_MATCH=yes 
    ```
 
    For example, on Windows:
@@ -44,7 +44,6 @@ Here is a diagram on the steps to configure Jaspersoft.
 5. Test the Oracle Client with Oracle SQL*Plus
    `sqlplus password/\"Password\"@ConnectString`
    or
-
    `sqlplus /nolog`
    `sql> set define off`
    `sql> connect username/password@connectString`
@@ -56,7 +55,7 @@ Here is a diagram on the steps to configure Jaspersoft.
 The JDBC drivers are certified with a JDK version.  ojdbc8.jar is certified with JDK8, JDK9, JDK11, ojdbc10.jar is certified with JDK10, JDK11.
 
 1. Install the appropriate JDBC driver.
-   The Oracle 19c (19.8) JDBC client driver can be downloaded from [JDBC Driver and UCP Downloads.](https://www.oracle.com/database/technologies/appdev/jdbc-ucp-19-8-c-downloads.html)  Download either ojdbc8-full.tar.gz or ojdbc10-full.jar.gz.
+   The Oracle 19c (19.8) JDBC client driver can be downloaded from [JDBC Driver and UCP Downloads.](https://www.oracle.com/database/technologies/appdev/jdbc-ucp-19-8-c-downloads.html)  Download either `ojdbc8-full.tar.gz` or `ojdbc10-full.jar.gz`.
 
 ## **Install Jaspersoft**
 
@@ -69,7 +68,7 @@ The JDBC drivers are certified with a JDK version.  ojdbc8.jar is certified with
 3. Force Tibco Jaspersoft to ignore the embedded (shipped) JDK and use the JDK installed above.
    Edit the file “Jaspsersoft Studio Professional.ini” and remove the line identifying the VM. This will be similar to:
    `-vm features/jre.win32.win32.x86_64.feature_1.8.0.u151/jre/bin`
-4. In the repository explorer right click to "Create Data Adapter".
+4. In the repository explorer right click to `Create Data Adapter`.
 
 ![create-adapter](./images/create-adapter.png)
 
@@ -96,7 +95,7 @@ Password was set when you created your Autonomous Database.
 
 ![connect-info](./images/connect-info.png)
 
-7. Select the “Driver Classpath” tab.
+7. Select the `Driver Classpath` tab.
 
    ![classpath](./images/classpath.png)
 
@@ -105,23 +104,24 @@ Password was set when you created your Autonomous Database.
 ![jdbc-jars](./images/jdbc-jars.png)
 
 Classpath must include:
-ojdbc8.jar (or ojdbc10.jar)
-oraclepki.jar
-osdt_cert.jar
-osdt_core.jar
+- `ojdbc8.jar (or ojdbc10.jar)`
+- `oraclepki.jar`
+- `osdt_cert.jar`
+- `osdt_core.jar`
 and can optionally include:
-orai18n.jar
-orajsoda.jar
-ojdbc8dms.jar
-ons.jar
-simplefan.jar
-ucp.jar
-Note that the names shown here, omit version numbers that may exist in later downloads.
+- `orai18n.jar`
+- `orajsoda.jar`
+- `ojdbc8dms.jar`
+- `ons.jar`
+- `simplefan.jar`
+- `ucp.jar`
+
+**Note**: that the names shown here, omit version numbers that may exist in later downloads.
 There is no harm in configuring all jars, this covers all potential needs.
 
 ![complete-classpath](./images/complete-classpath.png)
 
-9. “Test” the connection.
+9. `Test` the connection.
 
    ![test-connection](./images/test-connection.png)
 
@@ -129,7 +129,7 @@ There is no harm in configuring all jars, this covers all potential needs.
 
    ![success-connection](./images/success-connection.png)
 
-10. Select “Finish” to save the adapter.
+10. Select `Finish` to save the adapter.
 
 
 
@@ -137,4 +137,4 @@ There is no harm in configuring all jars, this covers all potential needs.
 
 * **Author(s)** - Troy Anthony, Database Product Management
 * **Contributor(s)** - Milton Wan, Database Product Management
-* **Last Updated By/Date** - Milton Wan, December 2021
+* **Last Updated By/Date** - Blake Hendricks, DB Product Management, July 2022

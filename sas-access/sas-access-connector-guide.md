@@ -7,8 +7,8 @@ This guide shows you how to configure SAS/ACCESS connectivity to Oracle Autonomo
 This document assumes the following:
 
 - Autonomous Database (ADB) is provisioned. ADB includes Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD).  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
-- ADB Wallet is downloaded on your machine running SAS/ACCESS.  To download and configure the wallet see [here](?lab=wallet).
-- Oracle Instant Client is downloaded and configured on your machine running SAS/ACCESS.  To install Oracle Instant Client see [here](?lab=instant-client-windows-64).
+- ADB Wallet is downloaded on your machine running SAS/ACCESS.  To download and configure the wallet see [here](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/cswgs/autonomous-connect-download-credentials.html#GUID-B06202D2-0597-41AA-9481-3B174F75D4B1).
+- Oracle Instant Client is downloaded and configured on your machine running SAS/ACCESS.  To install Oracle Instant Client see [here](https://www.oracle.com/database/technologies/instant-client.html).
 
 ## **Configuring with Oracle Database Client**
 
@@ -67,4 +67,4 @@ You are now ready to start exploring and visualizing your data.
 
 * **Author(s)** - Vijay Balebail, Database Product Management
 * **Contributor(s)** - Milton Wan
-* **Last Updated By/Date** - Milton Wan, December 2021
+* **Last Updated By/Date** - Blake Hendricks, Database Product Management, July 2022
