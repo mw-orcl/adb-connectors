@@ -1,0 +1,26 @@
+{
+  "workshoptitle": "Creating a connection from Talend ETL Tool to Oracle Autonomous Data Warehouse",
+  "help": "vijay.balebail@oracle.com",
+  "tutorials": [
+    {
+      "title": "Connecting with Wallet",
+      "description": "Wallet",
+      "filename": "../../../talend-connection-adw/common/wallet/wallet.md"
+    },
+    {
+      "title": "Connecting without Wallet",
+      "description": "Introduction",
+      "filename": "../../../talend-connection-adw/common/tls-no-wallet/no-wallet.md"
+    },
+    {
+      "title": "Oracle Instant Client for Windows Configuration",
+      "description": "Instant Client Configuration",
+      "filename": "../../../talend-connection-adw/common/instant-client/instant-client-windows-64.md"
+    },
+    {
+      "title": "TALEND ETL Tool to Oracle Autonomous Database Connection Guide",
+      "description": "Introduction",
+      "filename": "../../../talend-connection-adw/talend-connection-adw-guide.md"
+    }
+  ]
+}
