@@ -98,8 +98,6 @@ Congratulations! Once you have published the Data sources and workbooks to Table
 - [Connect Tableau Desktop to ADB]() 
 
 
-
-
 ## **Acknowledgements**
 
 * **Author(s)** - Vijay Balebail, Database Product Management

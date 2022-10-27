@@ -1,228 +1,186 @@
 ## **Connecting Microsoft Power BI Desktop to Oracle Autonomous Database**
 
+This step-by-step tutorial guides how to configure `Microsoft Power BI Desktop` connectivity to `Oracle Autonomous Database` (ADB) and on-premises databases.
 
-
-This step by step guide shows you how to configure Microsoft Power BI Desktop connectivity to Oracle Autonomous Database (ADB).
-
-These instructions use managed or unmanaged Oracle Data Provider for .NET (ODP.NET) for data access and work for both dedicated and shared infrastructure ADB.
+These instructions use unmanaged Oracle Data Provider for .NET (ODP.NET) for data access as required by
+Power BI Desktop. They work for on-premises database and both dedicated and shared infrastructure
+ADB. The instructions for on-premises databases setup also apply to Oracle Database Cloud Services and
+Oracle Exadata Cloud Service.
 
 ## **Prerequisites**
 
-- This document assumes that ADB, such as Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD) is provisioned and Power BI Desktop is installed on a Windows machine (local, in Azure, or OCI).  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08). 
+- This document assumes that ADB, such as `Autonomous Data Warehouse (ADW)` or `Autonomous Transaction Processing (ATP)`, or `Autonomous JSON Database (AJD)` is provisioned and Power BI Desktop is installed on a `Windows machine (local, in Azure, or OCI)`.  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
+- Connecting to Oracle databases on-premises and ADB are similar. This tutorial will note the differences
+between them when setting up Power BI connectivity.
 - ADB Wallet is downloaded on your machine running Power BI Gateway.  To download and configure the wallet see [here](?lab=wallet).
-
-
+- If using ADB, you will need access to the Oracle Cloud Console that has access to your ADB instance. Below is a screenshot from the cloud console to a database named ADWPTR
 ![adb](./images/adb-ui-details.png)
+- Power BI Desktop uses unmanaged ODP.NET (Oracle.DataAccess.Client) for Oracle database connectivity. This tutorial was tested with Power BI’s June 2022 version using ODP.NET, Unmanaged Driver, 19.15
 
+## **Overview**
 
+These are the general steps to setup Oracle database connectivity with Microsoft Power BI Desktop:
+• Provision Oracle database or ADB
+• Download database credentials to Windows client
+• Install Power BI on Windows client
+• Install and configure ODP.NET on Windows client
+• Validate Power BI connects to Oracle database or ADB
 
-## **Configuring ODP.NET**
+## **Installation and Setup Steps**
 
-Power BI may use managed ODP.NET or unmanaged ODP.NET for its ADB connectivity. This tutorial was tested with Power BI’s May 2021 version, which requires unmanaged ODP.NET for Oracle database connectivity. It is possible that Microsoft will update Power BI to use managed ODP.NET in a future version. This tutorial guides you on using either unmanaged or managed ODP.NET with Power BI.
+1. For ADB, go to the cloud console screen for the ADB instance you will connect to. Start your ADB
+instance. Click on the “DB Connection” button. Download the corresponding ADB credentials zip file to
+the system that has Power BI Desktop installed. These credential files `(cwallet.sso, tnsnames.ora, and
+sqlnet.ora)` will be used to connect Power BI Desktop to ADB.
+![wallet](./images/adb-wallet-download.png)
 
-1. Open Power BI Desktop and select Get Data.
+- For on-premises databases, the credential files required will depend on your database server setup.
+Typically, ODP.NET requires tnsnames.ora and sqlnet.ora to be accessible to connect to the database
+server. These files can be copied from another Oracle database client that connects to the target
+database server.
 
-![pbi-get-data](./images/power-bi-get-data.png)
+- Alternatively, an Easy Connect or Easy Connect Plus string can be used in lieu of credential files for onpremises databases. For example, the Power BI Desktop “Server” configuration setting can accept an Easy
+Connect string with the following format: `<DB hostname>:<Port>/<Service Name>`. If you use Easy Connect (Plus), you can skip the credential file downloading and setup steps in this tutorial.
 
+2. Place the Oracle ADB or DB credentials on your Windows machine into a directory `(e.g. C:\data\wallet)`. This machine is where Power BI Desktop is or will be installed on. For ADB, the credentials have been
+downloaded into a zip file that you will unzip into this directory. Note the directory location for use in upcoming steps.
 
+![walletloc](./images/walletloc.png)
 
-2. At this point, we are merely determining which ODP.NET provider your Power BI Desktop instance is hard-coded to use. We will configure the correct provider once we learn this information. Select Database > Oracle database > Connect to attempt to connect to an Oracle database.
+3. **<ins>ADB Only</ins>**
+If you are connecting to **one ADB instance**, open the sqlnet.ora configuration file in the credentials
+directory in a text editor. You will see the following line:
 
-![pbi-db-oracle](./images/get-data-oracle.png)
+```
+WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY="?/network/admin")))
+```
 
-3. If the error indicates it is trying to use **Oracle.DataAccess.Client** assembly, then set up Power BI Desktop with **unmanaged ODP.NET**. If the error says it is trying to use **Oracle.ManagedDataAccess.Client**, then use **managed ODP.NET**.
+Set the DIRECTORY value to the ADB wallet directory location, such as:
 
+```
+WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY=C:\DATA\WALLET\)))
+```
 
+If you are connecting to **multiple ADBs** from the same machine with a different wallet for each, add the
+parameter `MY_WALLET_DIRECTORY` to each connect descriptor’s specific wallet location in
+`tnsnames.ora`.
 
-If you need to use unmanaged ODP.NET, determine if Power BI is either 32-bit or 64-bit. To look up Power BI Desktop’s bitness, select File > Help > About.
+For example:
 
-![pbi-version](./images/power-bi-version.png)
+```
+adwptr_high = (description=(retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)
+(host=<host name>)) (connect_data=(service_name=<service name>))
+(security=(ssl_server_cert_dn="CN=adwc.uscom-east-1.oraclecloud.com, OU=Oracle BMCS US, O=Oracle
+Corporation, L=Redwood City, ST=California, C=US")(MY_WALLET_DIRECTORY=C:\DATA\WALLET\ADWPTR)))
+```
 
-In the above screenshot, we see that 64-bit Power BI Desktop is being used. That means 64-bit unmanaged ODP.NET must be installed and configured for Power BI to connect to ADB. If 32-bit Power BI Desktop was being used, then 32-bit unmanaged ODP.NET would be required.
+```adwbi_high = (description=(retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)
+(host=<host name>))(connect_data=(service_name=<service name>))
+(security=(ssl_server_cert_dn="CN=adwc.uscom-east-1.oraclecloud.com, OU=Oracle BMCS US, O=Oracle
+Corporation,L=Redwood City, ST=California, C=US")(MY_WALLET_DIRECTORY=C:\DATA\WALLET\ADWBI)))
+```
 
-The following instructions cover all scenarios, whether you are using managed or unmanaged ODP.NET or you are using 32-bit or 64-bit Power BI.
+After making your changes, `save` the file.
 
-4. If you require 64-bit managed ODP.NET or unmanaged ODP.NET, download 64-bit ODAC 19.3 from the ODAC Xcopy section in the middle of this [Oracle web page](https://www.oracle.com/database/technologies/dotnet-odacdeploy-downloads.html). If you require 32-bit unmanaged ODP.NET, download 32-bit ODAC 19c.
+4. Let’s determine whether you are using 32-bit or 64-bit Power BI Desktop. The bitness of Power BI
+Desktop and ODP.NET must match, meaning they both must be 32-bit or both 64-bit. In Windows, start
+Power BI Desktop. On the menu, select `Help` > `About` to see a window similar to the following:
+![powerbi](./images/powerbi.png)
 
-![odac-xcopy](./images/odac-xcopy-download.png)
+In the above screen shot, we see that it is 64-bit Power BI Desktop. That means 64-bit unmanaged
+ODP.NET must be installed and configured for Power BI to connect to an Oracle Database. If 32-bit Power
+BI Desktop was being used, then 32-bit unmanaged ODP.NET would be required.
 
+Unmanaged ODP.NET download is part of the `Oracle Data Access Components (ODAC)`, which can be
+downloaded for free from the Oracle website.
 
+5. From the **XCopy ODAC Packages** section on the bottom half of the [ODAC Download page](https://www.oracle.com/database/technologies/net-downloads.html), click on the
+`ODAC 19c (32-bit and 64-bit)` link. Do not use ODAC 21c versions currently.
+![odac](./images/odac.png)
+Log on to the Oracle website. In the `Platforms` drop down, select 64-bit or 32-bit Windows. Download
+64-bit ODAC 19.15.1 or higher if you are using 64-bit Power BI Desktop. Download 32-bit ODAC 19.15 or
+higher if you are using 32-bit Power BI Desktop. In the screen shot below, we will download 64-bit ODAC.
 
-5. Now, we’ll install ODP.NET.  Installation instructions are the same for managed ODP.NET, 32-bit unmanaged ODP.NET, and 64-bit unmanaged ODP.NET. Unzip the download contents to a staging directory (e.g. c:\xcopy64-install or c:\xcopy32-install).
+![odacselect](./images/odacselect.png)
 
-![xcopy_folder](./images/xcopy64-install-folder.png)
+6. Now, we will install ODP.NET. Installation instructions are the same for 32-bit and 64-bit ODP.NET. Unzip the download contents to a staging directory (e.g., C:\xcopy64-install or C:\xcopy32-install).
+![xcopy64](./images/xcopy64.png)
 
+7. Open a Windows command prompt **in administrator mode**. Navigate to the ODAC staging directory,
+then execute the following command to install and configure ODP.NET:
 
+```
+install.bat <component_name> <oracle_home_path> <oracle_home_name>
+<install_dependents> <machine_wide_configuration> <tns_admin_location>
+```
 
-6. Open a Windows command prompt **in administrator mode.** Navigate to the staging directory, then execute the next command to install ODP.NET:
+To configure ODP.NET for Power BI Desktop, use the following values:
+• <component_name> = `odp.net4`
+• <oracle_home_name> = ODAC install directory, such as `C:\oracle`
+• <oracle_home_name> = unique name for the ORACLE HOME, such as `myhome`
+• <install_dependents> = `true`
+• <machine_wide_configuration> = `true`
+• <tns_admin_location> = Oracle database credential files directory, such as `C:\data\wallet`
+A sample execution of install.bat with these arguments looks like:
+`install.bat odp.net4 c:\oracle myhome true true c:\data\wallet`
 
-​     install.bat odp.net4 `<installation directory>` odp64
+8. ***32-bit Power BI Desktop only***
+Add the 32-bit Oracle Client directory `(e.g. c:\oracle)` and its bin directory `(e.g. c:\oracle\bin)` to the Windows Path. You can do this by editing the Windows environment variable, Path.
+![pathvars](./images/pathvars.png)
+To ensure these directory path settings have precedence over existing Oracle Homes, move the settings
+up to the highest possible level in the directory order with the `Move Up` button.
 
-![xcopy_install](./images/xcopy64-install-command.png)
+9. If you are using tnsnames.ora file with your Oracle database, open the tnsnames.ora file to see which
+ADB or database net service names you can connect to. Below you see three different ones:
 
+`adwptr_high`, `adwptr_low`, and `adwptr_medium`. You will use one of these values for the Power BI
+Desktop `Server` name when configuring your Oracle connection.
+![tnsnames](./images/tnsnames.png)
 
+10. Open Power BI Desktop again. Click on “Get data” from the menu bar, then “More…” to begin connecting to Oracle database.
+![openpbi](./images/openpbi.png)
 
-Note: Enter the installation location (e.g. c:\odp64 or c:\odp32) for the directory parameter.
-
-![xcopy_folder](./images/odp64-folder.png)
-
-
-
-7. Configuration instructions differ between managed ODP.NET and unmanaged ODP.NET. In the same command prompt **in administrator mode,** navigate to the installation subdirectory, `<installation directory>`\odp.net\bin\4. Then, execute the following commands:
-
-a.    To configure unmanaged ODP.NET:
-
-`OraProvCfg /action:gac /providerpath:"Oracle.DataAccess.dll"`
-
-![gac](./images/gac-command.png)
-
-
-
-`OraProvCfg /action:config /product:odp /frameworkversion:v4.0.30319 /providerpath:"Oracle.DataAccess.dll"`
-
-![config](./images/oraprovcfg-config.png)
-
-
-
-Note: Validate that you are using the correct path for Oracle.DataAccess.dll file.
-
-b.    To configure managed ODP.NET
-
-`OraProvCfg /action:gac /providerpath:"../../managed/common/Oracle.ManagedDataAccess.dll"`
-
-`OraProvCfg /action:config /product:odpm /frameworkversion:v4.0.30319 /providerpath:"../../managed/common/Oracle.ManagedDataAccess.dll"`
-
-
-
-8. (For unmanaged ODP.NET only) Edit the Windows environment variables by adding the path value of the 64-bit Oracle Client directory (e.g. c:\odp64) or 32-bit Oracle Client directory (e.g. c:\odp32) depending on the version Power BI you are using.
-
-![env_vars](./images/env-variables.png)
-
-
-
-To ensure this directory path setting has precedence over existing Oracle Homes, move the setting up to the highest possible level in the directory order with the “Move Up” button.
-
-
-
-9. Open Power BI Desktop again, select Get Data, Database Oracle and click Connect
+Select `Database > Oracle database > Connect` to connect to your Oracle database.
 
  ![get_database](./images/power-bi-get-data-2.png)
 
-
-
-10. Using one of your net service names, select DirectQuery, and OK.
+In the `Server` text box, enter your database net service name `(e.g. adwptr_high)` from Step 9 or an Easy
+Connect (Plus) string. Set any other Power BI settings needed on this screen. Then, click `OK` to connect.
 
 ![select_service](./images/power-bi-connect-ui.png)
 
-11. Then select Database and enter your username and password for ADB, and Connect
+Power BI will request you enter in your database credentials. Select `Database` on the left side of
+the window so that you can use your database credentials. Then, enter your database user name
+(e.g. admin) and password. Click the `Connect` button when done.
 
-![select_database](./images/select-database.png)
+![admin](./images/admin.png)
 
+11. . Congratulations! Power BI Desktop should now connect to ADB or on-premises Oracle database. In the
+`Navigator` window, select the schema objects needed for your Microsoft Power BI Desktop file `(.pbix)`
+and `load the data`.
 
+![navigator](./images/navigator.png)
 
-![pbi_status](./images/power-bi-ui-status.png)
+**Performance Tuning for Large Data Retrievals**
 
+Typically, BI and ETL applications retrieve large data amounts from a source database for further processing.
 
+To speed up Oracle data retrieval via Power BI Desktop, the ODP.NET FetchSize can be increased from its
+default 128K value (131,072 bytes) to as large as int.MaxValue. The FetchSize determines the amount of data 10 ODP.NET fetches into its internal cache upon each database round trip. It’s possible to improve performance by an order of magnitude by significantly increasing FetchSize when retrieving large result sets.
 
-12. Congratulations! Your Power BI Desktop instance should now be connected to ADB. Open in Navigator the tables that you need data to create your Microsoft Power BI Desktop Document (.pbix) and load the data.
+**<ins>Unmanaged ODP.NET Instructions</ins>**
 
-![pbi_nav](./images/power-bi-navigator.png)
+To increase the 32-bit or 64-bit unmanaged ODP.NET’s FetchSize, launch the Windows Registry editor
+(regedit.exe) and go to the following Registry key:
+`HKEY_LOCAL_MACHINE\SOFTWARE\Oracle\ODP.NET\4.122.19.1`
 
-
-
-13. Create your own graph or retrieve the data in the table
-
-![pbi_graph](./images/power-bi-graph.png)
-
-
-
-![pbi_table](./images/power-bi-table.png)
-
-
-
-![pbi_table_2](./images/power-bi-table-2.png)
-
-
-
-## **Troubleshooting**
-
-Error: "Object reference not set to an instance of an object"
-
-Check that you have added the environment variables properly.  ie: C:\odp64 or odp32
-
-```
-C:\WINDOWS\system32>echo %PATH%
-
-C:\odp64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\...
-```
-
-Error: "Oracle: ORA-12154: TNS:could not resolve the connect identifier specified"
-
-Check that you have added the user environment variables properly.  ie: TNS_ADMIN and path to tnsnames.ora and sqlnet.ora
-
-```
-C:\WINDOWS\system32>echo %TNS_ADMIN%
-
-C:\<Oracle Home\network\admin
-```
-
-Note: A restart of the Windows OS or the Power BI application may be needed for the environment variables to take effect.
-
-Check your sqlnet.ora is set to the directory of your wallet or you are setting the directory using the parameter `MY_WALLET_DIRECTORY` in tnsnames.ora
-
-## **Performance Tuning for Large Data Retrievals**
-
-Typically, BI and ETL applications retrieve large data amounts from a source database for further processing. To speed up Oracle data retrieval via Power BI Desktop, the ODP.NET `FetchSize` can be increased from its default 128K value (131,072 bytes) to as large as int.MaxValue. The `FetchSize` determines the amount of data ODP.NET fetches into its internal cache upon each database round trip. It’s possible to improve performance by an order of magnitude by significantly increasing `FetchSize` when retrieving large result sets.
-
-### Unmanaged ODP.NET Instructions
-
-To increase the 32-bit or 64-bit unmanaged ODP.NET’s FetchSize, launch the Windows Registry editor (regedit.exe) and go to the following Registry key: `HKEY_LOCAL_MACHINE\SOFTWARE\Oracle\ODP.NET\4.122.19.1`
-
-Add the String Value "FetchSize" and set it to a value larger than the default (131072), such as 4194304 (4 MB).
+Add the String Value `FetchSize` and set it to a value larger than the default (131072), such as 4194304 (4 MB).
 
 Restart Power BI Desktop and run your queries with the new setting.
 
-### Managed ODP.NET Instructions
-
-To increase managed ODP.NET’s FetchSize, modify the .NET machine.config file. Modifying the machine.config requires Windows Administrator privileges. This file is generally located in the following directory: **C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319\Config**.
-
- Add an oracle.manageddataaccess.client section in the machine.config file for managed ODP.NET. This section should be placed within the `<configuration>` section and after the `<configSections> </configSections>`. Here’s an example setting the `FetchSize` to 4 MB:
-
-```
- <configuration>
-
- <configSections>
-
-…
-
-  </configSections>
-
- <oracle.manageddataaccess.client>
-
-  <version number="\*">
-
-   <settings>
-
-    <setting name="FetchSize" value="4194304" />
-
-   </settings>
-
-  </version>
-
- </oracle.manageddataaccess.client>
-
- </configuration>
-```
-
-
-
-Once done, restart Power BI Desktop so that ODP.NET will use the new setting.
-
-
-
-
-
 ## **Acknowledgements**
-* **Author(s)** - Pedro Torres, Alex, Keh, Database Product Management
-* **Contributor(s)** - Vijay Balebail, Milton Wan, Database Product Management
-* **Last Updated By/Date** - Milton Wan, December 2021
+
+- **Author(s)** - Pedro Torres, Alex Keh, Database Product Management
+
+- **Contributor(s)** - Vijay Balebail, Milton Wan, Blake Hendricks Database Product Management
+- **Last Updated By/Date** - Blake Hendricks, October 2022
