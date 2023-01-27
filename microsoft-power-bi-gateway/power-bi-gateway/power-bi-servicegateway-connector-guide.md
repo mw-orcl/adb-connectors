@@ -1,4 +1,4 @@
-## **Connecting Microsoft Power BI Service to Oracle Autonomous Database using Microsoft Gateway**
+## **Connecting Microsoft Power BI Service to Oracle Autonomous Database and On-Premises Database**
 
 This step-by-step tutorial guides configuring Microsoft Power BI service connectivity to Oracle Autonomous Database (ADB) and on-premises databases. Microsoft Power BI service runs in the Microsoft 365 cloud.
 
@@ -31,7 +31,7 @@ between them when setting up Power BI service connectivity.
 
 - If using ADB, you will need access to the Oracle Cloud Console that has access to your ADB instance. Below is a screenshot from the cloud console to a database named ADWPTR.
 
-![adb](./images/adb-ui-details.png)
+![adb](./images/setupss.png)
 
 - Power BI service and on-premises gateway uses 64-bit unmanaged ODP.NET (Oracle.DataAccess.Client) for
 Oracle database connectivity. This tutorial was validated using ODP.NET, Unmanaged Driver, 19.15.
@@ -40,13 +40,11 @@ Oracle database connectivity. This tutorial was validated using ODP.NET, Unmanag
 
 1. For ADB, go to the cloud console screen for the ADB instance you will connect to. Start your ADB instance.
 
-   - Click on the “DB Connection” button. Download the corresponding ADB credentials zip file. Move the
-credential files to the Windows machine that hosts the gateway. These credential files `(cwallet.sso, tnsnames.ora, and sqlnet.ora)` will be used to connect the gateway and Power BI Desktop to ADB.
+   - Click on the “DB Connection” button. Download the corresponding ADB credentials zip file. Move the credential files to the Windows machine that hosts the gateway. These credential files `(cwallet.sso, tnsnames.ora, and sqlnet.ora)` will be used to connect the gateway and Power BI Desktop to ADB.
 ![walletdownload](./images/walletdownload.png)
 
    - For <ins>on-premises</ins> databases, the credential files required depend on your database server setup. Typically, ODP.NET requires tnsnames.ora and sqlnet.ora to be accessible to connect to the database server. These files can be copied from another Oracle database client that connects to the target database server.
-   - Alternatively, an Easy Connect or Easy Connect Plus string can be used in lieu of credential files for onpremises databases. For example, the Power BI gateway `“Server”` configuration setting can accept an Easy Connect string with the following format: `“<DB hostname>:<Port>/<Service Name>”`. If you use Easy
-   - Connect (Plus), you can skip the credential file downloading and setup steps in this tutorial.
+   - Alternatively, an Easy Connect or Easy Connect Plus string can be used in lieu of credential files for onpremises databases. For example, the Power BI gateway `“Server”` configuration setting can accept an Easy Connect string with the following format: `“<DB hostname>:<Port>/<Service Name>”`. If you use Easy Connect (Plus), you can skip the credential file downloading and setup steps in this tutorial.
 
 2. Place the Oracle ADB or DB credentials on the Windows machine into a directory `(e.g. C:\data\wallet)`. This machine is where Power BI gateway is or will be installed on. It can be located on-premises or in the cloud, such as on an Oracle Cloud Infrastructure virtual machine, as long as it has network access to Power BI cloud service.
 
@@ -55,7 +53,8 @@ credential files to the Windows machine that hosts the gateway. These credential
    ![walletloc](./images/walletloc.png)
 
 3. **<ins>ADB Only</ins>**
-If you are connecting to **one ADB instance**, open the sqlnet.ora configuration file in the credentials directory in a text editor. You will see the following line:
+
+- If you are connecting to **one ADB instance**, open the sqlnet.ora configuration file in the credentials directory in a text editor. You will see the following line:
 
    ```
    WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY="?/network/admin")))
@@ -67,9 +66,7 @@ If you are connecting to **one ADB instance**, open the sqlnet.ora configuration
    WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY=C:\DATA\WALLET\)))
    ```
 
-If you are connecting to **multiple ADBs** from the same machine with a different wallet for each, add the
-parameter `MY_WALLET_DIRECTORY` to each connect descriptor’s specific wallet location in
-`tnsnames.ora`.
+- If you are connecting to **multiple ADBs** from the same machine with a different wallet for each, add the parameter `MY_WALLET_DIRECTORY` to each connect descriptor’s specific wallet location in `tnsnames.ora`.
 
    For example:
 
@@ -86,75 +83,66 @@ parameter `MY_WALLET_DIRECTORY` to each connect descriptor’s specific wallet l
    Corporation,L=Redwood City, ST=California, C=US")(MY_WALLET_DIRECTORY=C:\DATA\WALLET\ADWBI)))
    ```
 
-   After making your changes, `save` the file.
+After making your changes, `save` the file.
 
-4. Since Power BI Gateway is a 64-bit application, we use 64-bit unmanaged ODP.NET to perform database
-access. 64-bit unmanaged ODP.NET download is part of the Oracle Data Access Components (ODAC),
-which can be downloaded for free from the Oracle website
+4. Since Power BI Gateway is a 64-bit application, we use 64-bit unmanaged ODP.NET to perform database access. 64-bit unmanaged ODP.NET  download is part of the Oracle Data Access Components (ODAC), which can be downloaded for free from the Oracle website
 
-   - From the [Oracle Client for Microsoft Tools](https://www.oracle.com/database/technologies/appdev/ocmt.html), page click on the download link, `“64-bit Oracle Client for Microsoft Tools”`
+   - From the **XCopy ODAC Packages** section on the bottom half of the [ODAC Download page](https://www.oracle.com/database/technologies/net-downloads.html), click on the `ODAC 19c (32-bit and 64-bit)` link. Do not use ODAC 21c versions currently.
+ 
 
-   ![odac](./images/OracleClientSS.png)
+   ![odac](./images/odac19c.png)
 
    Log on to the Oracle website. In the “Platforms” drop down, select 64-bit Windows, then download 64-bit Oracle Client for Microsoft Tools.
 
-   ![odaselect](./images/oracleClientMicrosoft.png)
+   ![odaselect](./images/dataAccess.png)
 
-   Look for Oracle Client for Microsoft Tools.exe. Click the EXE link on the left side to begin the download
-   process. Choose the local directory to download the executable to and click “Save”. You should now see
-   the download locally.
+5. Now, we install ODP.NET. Unzip the download contents to a staging directory (e.g., `C:\xcopy64-install)`.
 
-   ![xcopy64install](./images/iconSS.png)
+![odac](./images/copy64ins.png)
 
-   Double click the icon to begin the install process. Next, click the “Yes” button in the User Account Control
-   screen. You should now see the introductory install screen. Click the “Next” button.
-   ![windowswizard](./images/oraclewizard.png)
+6. Open a Windows command prompt **in administrator mode**. Navigate to the ODAC staging directory, then execute the following command to install and configure ODP.NET:
 
-   Choose the “Default” Oracle Client setup type and click the “Next” button.
-   ![cleintsetup](./images/ClientSetup.png)
+```
+install.bat <component_name> <oracle_home_path> <oracle_home_name>
+<install_dependents> <machine_wide_configuration> <tns_admin_location>
+```
 
-   Enter the “Destination Location” where the Oracle Client will be installed on your machine. Use the “Browse” button to specify the directory location. Click “Next” when completed.
-   ![PickLoc](./images/PickLocation.png)
+To configure ODP.NET for Power BI Desktop, use the following values:
+• <component_name> = `odp.net4`
+• <oracle_home_name> = ODAC install directory, such as `C:\oracle`
+• <oracle_home_name> = unique name for the ORACLE HOME, such as `myhome`
+• <install_dependents> = `true`
+• <machine_wide_configuration> = `true`
+• <tns_admin_location> = Oracle database credential files directory, such as `C:\data\wallet`
 
-   Enter the directory where ODP.NET can find its Oracle Client configuration files, sqlnet.ora and tnsnames.ora, such as C:\data\wallet. Click “Next” when complete.
-   ![PickLoc](./images/SS.png)
+A sample execution of install.bat with these arguments looks like:
+`install.bat odp.net4 c:\oracle myhome true true c:\data\wallet`
 
-   The Oracle Client for Microsoft Tools is now ready to install. Click the “Install” button to proceed.
-   ![PickLoc](./images/installprog.png)
-
-   The ODP.NET install is now complete and configured for use on this machine. On the “Wizard Complete”
-   screen, you can choose to review the Oracle Client for Microsoft Tools README. Click the “Finish” button to
-   proceed.
-   ![PickLoc](./images/complete.png)
-
-
-
-1.  If you are using tnsnames.ora file with your Oracle database, open the tnsnames.ora file to see which ADB or database net service names you can connect to. Below you see three different ones: `adwptr_high”, “adwptr_low”, and “adwptr_medium”`. You will use one of these values for the Power BI gateway `“Server”`
-name when configuring your Oracle connection.
+7. If you are using tnsnames.ora file with your Oracle database, open the tnsnames.ora file to see which ADB or database net service names you can connect to. Below you see three different ones: `adwptr_high”, “adwptr_low”, and “adwptr_medium”`. You will use one of these values for the Power BI gateway `“Server”` name when configuring your Oracle connection.
 
    ![tnsnames](./images/tnsnamesora.png)
 
-1. Sign on to the [Power BI website](https://powerbi.microsoft.com/en-us/) with your Microsoft 365 account.
+8. Sign on to the [Power BI website](https://powerbi.microsoft.com/en-us/) with your Microsoft 365 account.
 
    ![powerbidesktop](./images/powerbidesktop.png)
 
-2. We now download the Power BI gateway to the Windows machine and install it. You can skip steps 9 and
+9. We now download the Power BI gateway to the Windows machine and install it. You can skip steps 9 and
 10 if you already have created and configured the Power BI gateway.
 
-   - From the Power BI web console, click the `“∙∙∙”` drop down menu in the upper right > “Download” > “Data
-   Gateway”.
+- From the Power BI web console, click the `“∙∙∙”` drop down menu in the upper right > “Download” > “Data
+Gateway”.
 
-   ![bidg](./images/powerbiDG.png)
+![bidg](./images/powerbiDG.png)
 
-   - A web page will open. Click `“Download standard mode”` to download the gateway install.
+- A web page will open. Click `“Download standard mode”` to download the gateway install.
 
-   ![download](./images/downloadpowerbi.png)
+![download](./images/downloadpowerbi.png)
 
-   - Run `“GatewayInstall.exe”` file after it downloads. Enter the install directory location and accept the terms.
+- Run `“GatewayInstall.exe”` file after it downloads. Enter the install directory location and accept the terms.
 
-   ![config](./images/powerbiconfig.png)
+![config](./images/powerbiconfig.png)
 
-1.  We will now complete registration of the Power BI gateway. Start by entering the email address of your Power BI service account. You will be asked to sign in to register the gateway with your Power BI account.
+10. We will now complete registration of the Power BI gateway. Start by entering the email address of your Power BI service account. You will be asked to sign in to register the gateway with your Power BI account.
 
    ![powerrbi](./images/powerbi.png)
 
@@ -171,15 +159,15 @@ name when configuring your Oracle connection.
 
    ![gatewaystatus](./images/gatewaystatus.png)
 
-9. Go back to the Power BI website. Switch to a Power BI Premium or Power BI Pro workspace. Click `“New” > “Dataflow” > “Add new tables”`
+11. Go back to the Power BI website. Switch to a Power BI Premium or Power BI Pro workspace. Click `“New” > “Dataflow” > “Add new tables”`
 
    ![premium](./images/powerbipremium.png)
 
-10. . Select `“Oracle database”`.
+12. Select `“Oracle database”`.
 
    ![adwptr](./images/powerbiadwptr.png)
 
-11. Provide the entries to connect to your data source:
+13. Provide the entries to connect to your data source:
 
     - Server = Enter the database net service name `(e.g. “adwptr_high”, “adwptr_low”)` or `Easy Connect (Plus) configuration`
     - Data gateway = Power BI gateway name `(e.g. gateway)`
@@ -190,7 +178,7 @@ name when configuring your Oracle connection.
 
    ![query](./images/powerquery.png)
 
-12. Congratulations! Your Power BI service instance is now connected to Oracle database. You should now be able to view the schema objects available to the Oracle user. In the tree control, select the schema objects needed for your Microsoft Power BI application and load the data.
+14. Congratulations! Your Power BI service instance is now connected to Oracle database. You should now be able to view the schema objects available to the Oracle user. In the tree control, select the schema objects needed for your Microsoft Power BI application and load the data.
 
    ![powerbi](./images/powerbi2.png)
 
@@ -210,6 +198,7 @@ To increase the 32-bit or 64-bit unmanaged ODP.NET’s FetchSize, launch the Win
 Add the String Value `FetchSize` and set it to a value larger than the default (131072), such as 4194304 (4 MB).
 
 Restart Power BI Desktop and run your queries with the new setting.
+
 
 ## **Acknowledgements**
 
