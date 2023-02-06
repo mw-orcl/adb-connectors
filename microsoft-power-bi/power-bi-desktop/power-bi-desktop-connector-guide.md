@@ -183,6 +183,5 @@ Restart Power BI Desktop and run your queries with the new setting.
 ## **Acknowledgements**
 
 - **Author(s)** - Pedro Torres, Alex Keh, Database Product Management
-
-- **Contributor(s)** - Vijay Balebail, Milton Wan, Blake Hendricks Database Product Management
-- **Last Updated By/Date** - Blake Hendricks, January 2023
+- **Contributor(s)** - Blake Hendricks Database Product Management
+- **Last Updated By/Date** - Blake Hendricks, February 2023
