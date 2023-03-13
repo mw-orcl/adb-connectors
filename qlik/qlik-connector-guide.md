@@ -10,7 +10,7 @@ This document assumes the following:
 
 - Autonomous Database (ADB) is provisioned. ADB includes Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP), or Autonomous JSON Database (AJD).  To provision ADB, see [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-provision.html#GUID-0B230036-0A05-4CA3-AF9D-97A255AE0C08).
 - Qlik is installed on a machine (local, OCI, or other cloud).   
-- If you are connecting with ADB Wallet, download it on your machine running Jaspersoft.  To download and configure the wallet see [here](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/cswgs/autonomous-connect-download-credentials.html#GUID-B06202D2-0597-41AA-9481-3B174F75D4B1).
+- If you are connecting with ADB Wallet, download it on your machine running Qlik.  To download and configure the wallet see [here](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/cswgs/autonomous-connect-download-credentials.html#GUID-B06202D2-0597-41AA-9481-3B174F75D4B1).
 - If you are not connecting with ADB Wallet, configure ADB with TLS [here](https://blogs.oracle.com/developers/post/securely-connecting-to-autonomous-db-without-a-wallet-using-tls).
 - Oracle Instant Client is downloaded and configured.  To install Oracle Instant Client see [here](https://www.oracle.com/database/technologies/instant-client.html).
 
@@ -65,6 +65,6 @@ You are now ready to consume this system DSN in Qlik Sense Desktop.
 
 ## **Acknowledgements**
 
-* **Author(s)** - Milton Wan, Database Product Management
+* **Author(s)** - Vijay Balebail, Milton Wan, Database Product Management
 * **Contributor(s)** -
-* **Last Updated By/Date** - Milton Wan, December 2021
+* **Last Updated By/Date** - Milton Wan, December 2022
