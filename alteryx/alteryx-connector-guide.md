@@ -47,6 +47,6 @@ Below is an example of connecting Alteryx Designer with ADB after the prerequisi
 
 ## **Acknowledgements**
 
-* **Author(s)** - Milton Wan, Database Product Management
+* **Author(s)** - Vijay Balebail, Milton Wan, Database Product Management
 * **Contributor(s)** - 
-* **Last Updated By/Date** - Milton Wan, December 2021
+* **Last Updated By/Date** - Milton Wan, December 2022
